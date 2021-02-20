@@ -4,18 +4,41 @@ using UnityEngine;
 
 public class VoidController : MonoBehaviour
 {
-    [Header("Component References")]
+    [Header("Object References")]
     [SerializeField] protected VoidSphere voidSphere;
+    protected Camera mainCamera;
+
+    [SerializeField] protected GameObject targetSphere;
 
     [Header("Tunable Parameters")]
-    [SerializeField] protected float castTime = 3f;
+    [SerializeField] protected LayerMask targetMask;
+
+    [SerializeField] protected float castTime = 0.5f;
     public float CastTime { get { return castTime; } }
 
     protected bool voidActive = false;
     public bool VoidActive { get { return voidActive; } }
 
+    protected bool validTarget = false;
+    public bool ValidTarget { get { return validTarget; } }
+
+    [SerializeField] float targetFocusTime = 5f;
+    protected float focusTime = 0.0f;
+    public void ResetFocus() { focusTime = 0.0f; }
+    public bool RepressFocused { get { return focusTime >= targetFocusTime; } }
+
     // States
     [Header("State Slots")]
+
+    [SerializeField] protected Substate aimVoidState;
+    public Substate AimVoidState {
+        get { return Instantiate(aimVoidState); }
+    }
+
+    [SerializeField] protected Substate focusRepressState;
+    public Substate FocusRepressState {
+        get { return Instantiate(focusRepressState); }
+    }
 
     [SerializeField] protected Substate castingState;
     public Substate CastingState {
@@ -26,11 +49,44 @@ public class VoidController : MonoBehaviour
         }
     }
 
+    void Start() {
+        
+        mainCamera = Camera.main;
+    }
+
     // This coroutine slot is shared by all functions in the class.
     //      This way, any adjustments may be interrupted without fear of overlapping adjustments.
     protected IEnumerator voidAdjustmentCoroutine;
 
+    protected Vector3 targetLocation;
+
+    public void AimVoid() {
+        Debug.Log("Aiming Void...");
+
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 30f, targetMask)) {
+            // Set the target to valid.
+            validTarget = true;
+            
+            // Set the VoidSphere's position to the intersection.
+            Debug.DrawRay(transform.position, mainCamera.transform.forward * hit.distance, Color.yellow);
+            voidSphere.transform.position = hit.point;
+            targetSphere.transform.position = hit.point;
+
+        } else {
+            // Set the target to invalid.
+            validTarget = false;
+
+            // Set the VoidSphere's position to negative world origin.
+            voidSphere.transform.position = new Vector3(0, -100, 0);
+            targetSphere.transform.position = new Vector3(0, -100, 0);
+        }
+
+    }
+
     public void Reveal() {
+        targetSphere.transform.position = new Vector3(0, -100, 0);
+
         if (voidActive) {
             Debug.Log("Only one void may be active at a time.");
             return;
@@ -49,7 +105,16 @@ public class VoidController : MonoBehaviour
         StartCoroutine(voidAdjustmentCoroutine);
     }
 
+    public void FocusRepress() {
+        Debug.Log("Focusing Void...");
+
+        RaycastHit hit;
+        focusTime += Time.fixedDeltaTime;
+
+    }
+
     public void Repress() {
+
         if (!voidActive) {
             Debug.Log("The void is already closed.");
             return;

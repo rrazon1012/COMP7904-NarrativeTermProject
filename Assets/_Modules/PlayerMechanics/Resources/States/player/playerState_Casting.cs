@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Player/Casting")]
-public class st_Casting : Substate
+public class playerState_Casting : Substate
 {
     public override void OnStateEnter(StateFrame frame) {
         

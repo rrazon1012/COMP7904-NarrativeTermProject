@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _NoiseTexture:
-        m_Texture: {fileID: 2800000, guid: ab2f7e71ff5f3c048a59df241404547e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
@@ -32,9 +32,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Distance: 1.04
+    - _Distance: 0
     - __dirty: 0
     m_Colors:
-    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
-    - _PanningSpeed: {r: -0.04, g: 0, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _PanningSpeed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

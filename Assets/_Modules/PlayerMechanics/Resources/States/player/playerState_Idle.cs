@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "States/Player/Idle")]
-public class st_Idle : Substate {
+public class playerState_Idle : Substate {
 
     public override void OnStateEnter(StateFrame frame) {
 
@@ -26,11 +26,8 @@ public class st_Idle : Substate {
             Debug.Log("Action 1 Performed. ");
             playerFrame.inputBuffer.PopQueuedInput();
 
-            // 2. Call the function required.
-            playerFrame.voidController.Reveal();
-
-            // 3. Manage the state transition.
-            frame.StateTransition(playerFrame.voidController.CastingState);
+            // 2. Manage the state transition.
+            frame.StateTransition(playerFrame.voidController.AimVoidState);
         }
 
         // If the player presses Action 2, repress the void.
@@ -40,11 +37,8 @@ public class st_Idle : Substate {
             // 1. Manage the input.
             playerFrame.inputBuffer.PopQueuedInput();
 
-            // 2. Call the function required.
-            playerFrame.voidController.Repress();
-
-            // 3. Manage the state transition.
-            frame.StateTransition(playerFrame.voidController.CastingState);
+            // 2. Manage the state transition.
+            frame.StateTransition(playerFrame.voidController.FocusRepressState);
         }
     }
     
