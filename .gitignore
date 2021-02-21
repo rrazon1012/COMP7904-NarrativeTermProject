@@ -80,6 +80,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Addon Meta files
+/[Aa]ssets/[Aa]ddons/[Aa]mplify[Ss]hader[Ee]ditor/**/*.meta
+
 # Windows thumbnail cache files
 Thumbs.db
 Thumbs.db:encryptable
