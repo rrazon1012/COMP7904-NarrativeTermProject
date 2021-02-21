@@ -236,8 +236,8 @@ ModelImporter:
       name: Arch-EnterFocusRepress
       takeName: Arch-CastRepress
       internalID: 0
-      firstFrame: 0
-      lastFrame: 70
+      firstFrame: 70
+      lastFrame: 116
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -265,7 +265,7 @@ ModelImporter:
       name: Arch-CastRepress
       takeName: Arch-CastRepress
       internalID: 0
-      firstFrame: 70
+      firstFrame: 116
       lastFrame: 188
       wrapMode: 0
       orientationOffsetY: 0
