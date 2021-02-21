@@ -100,7 +100,7 @@ public class VoidController : MonoBehaviour
         }
 
         // Assign the new coroutine to the shared slot.
-        voidAdjustmentCoroutine = AdjustVoidSize(11f, 10);
+        voidAdjustmentCoroutine = AdjustVoidSize(11f, 20);
 
         StartCoroutine(voidAdjustmentCoroutine);
     }
@@ -126,7 +126,7 @@ public class VoidController : MonoBehaviour
             StopCoroutine(voidAdjustmentCoroutine);
         }
 
-        voidAdjustmentCoroutine = AdjustVoidSize(0f, 10);
+        voidAdjustmentCoroutine = AdjustVoidSize(0f, 20);
 
         StartCoroutine(voidAdjustmentCoroutine);
     }
