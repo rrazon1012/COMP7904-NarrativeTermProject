@@ -125,9 +125,17 @@ public class PlayerMotor : BaseMotor {
 				Quaternion turnRotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, rotationVector.x * 100, 0));
 				transform.rotation = Quaternion.Slerp(transform.rotation, turnRotation, TurnSpeed);
 
-				Quaternion camRotation = Quaternion.Euler(mainCamera.transform.rotation.eulerAngles + new Vector3(-rotationVector.z * 75, 0, 0));
-				mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, camRotation, TurnSpeed);
-				
+				if (CameraTransform.rotation.x + -rotationVector.z * 75 <= 90)
+				{
+					Quaternion camRotation = Quaternion.Euler(mainCamera.transform.rotation.eulerAngles + new Vector3(-rotationVector.z * 75, 0, 0));
+					mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, camRotation, TurnSpeed);
+				}
+				else
+				{
+					Quaternion camRotation = Quaternion.Euler(90, 0, 0);
+					mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, camRotation, TurnSpeed);
+				}
+
 			}
 		// Mouse Rotations
 		} else {
