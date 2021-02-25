@@ -79,6 +79,9 @@ public class BaseMotor : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		Anim = GetComponentInChildren<Animator>();
 
+		//lock cursor in game
+		Cursor.lockState = CursorLockMode.Locked;
+
 		// Modifier setup
 		turnSpeedModifier = 1f;
 		gravityModifier = 1f;
