@@ -7,6 +7,7 @@ public class PlayerMotor : BaseMotor {
 	[SerializeField] protected Camera mainCamera;
 
 	protected NavMeshAgent pathingAgent;
+	private float xRotation = 0f;
 
 	// Component references:
 	public Transform CameraTransform { set; get; }
@@ -121,31 +122,27 @@ public class PlayerMotor : BaseMotor {
 			rotationVector = CreateInputVector(inputBuffer.GetRotationVector()) ;
 			if (rotationVector.sqrMagnitude > 0.0f) {
 				float curX = transform.rotation.x;
-				
-				Quaternion turnRotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, rotationVector.x * 100, 0));
-				transform.rotation = Quaternion.Slerp(transform.rotation, turnRotation, TurnSpeed);
 
-				if (CameraTransform.rotation.x + -rotationVector.z * 75 <= 90)
-				{
-					Quaternion camRotation = Quaternion.Euler(mainCamera.transform.rotation.eulerAngles + new Vector3(-rotationVector.z * 75, 0, 0));
-					mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, camRotation, TurnSpeed);
-				}
-				else
-				{
-					Quaternion camRotation = Quaternion.Euler(90, 0, 0);
-					mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, camRotation, TurnSpeed);
-				}
-
+				float lookX = rotationVector.x * controllerTurnSpeed;
+				float lookY = rotationVector.z * controllerTurnSpeed;
+				xRotation -= lookY;
+				xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+				//Debug.Log("xRotation: " + xRotation);
+				//IT IS DONE!!!!
+				CameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+				transform.Rotate(Vector3.up * lookX);
 			}
 		// Mouse Rotations
 		} else {
 			Vector2 axis = inputBuffer.GetMouseAxis();
-			
-			Quaternion turnRotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, axis.x * 10, 0));
-			transform.rotation = Quaternion.Slerp(transform.rotation, turnRotation, TurnSpeed);
 
-			Quaternion camRotation = Quaternion.Euler(mainCamera.transform.rotation.eulerAngles + new Vector3(-axis.y * 10, 0, 0));
-			mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, camRotation, TurnSpeed);
+			float lookX = axis.x * mouseTurnSpeed;
+			float lookY = axis.y * mouseTurnSpeed;
+			xRotation -= lookY;
+			xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+			CameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+			transform.Rotate(Vector3.up * lookX);
 		}
 		
 		Vector3 moveDirection = CreateInputVector(inputBuffer.GetMovementVector());
