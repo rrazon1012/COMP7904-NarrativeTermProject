@@ -16,8 +16,8 @@ TagManager:
   - IgnoreNavmesh
   - PostProcessing
   - ViewModel
-  - 
-  - 
+  - Player
+  - Interactable
   - 
   - 
   - 
