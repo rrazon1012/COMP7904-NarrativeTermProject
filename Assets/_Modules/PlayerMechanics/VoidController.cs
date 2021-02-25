@@ -5,7 +5,6 @@ using UnityEngine;
 public class VoidController : MonoBehaviour
 {
     [Header("Object References")]
-    [SerializeField] protected VoidSphere voidSphere;
     protected Camera mainCamera;
 
     [SerializeField] protected GameObject targetSphere;
@@ -70,7 +69,7 @@ public class VoidController : MonoBehaviour
             
             // Set the VoidSphere's position to the intersection.
             Debug.DrawRay(transform.position, mainCamera.transform.forward * hit.distance, Color.yellow);
-            voidSphere.transform.position = hit.point;
+            VoidSphere.Instance.transform.position = hit.point;
             targetSphere.transform.position = hit.point;
 
         } else {
@@ -78,7 +77,7 @@ public class VoidController : MonoBehaviour
             validTarget = false;
 
             // Set the VoidSphere's position to negative world origin.
-            voidSphere.transform.position = new Vector3(0, -100, 0);
+            VoidSphere.Instance.transform.position = new Vector3(0, -100, 0);
             targetSphere.transform.position = new Vector3(0, -100, 0);
         }
 
@@ -133,27 +132,27 @@ public class VoidController : MonoBehaviour
 
     protected IEnumerator AdjustVoidSize(float targetRadius, float adjustionSpeed) {
         // Case that the sphere must expand
-        if (targetRadius > voidSphere.voidRadius) {
+        if (targetRadius > VoidSphere.Instance.voidRadius) {
 
-            while (voidSphere.voidRadius <= targetRadius) {
+            while (VoidSphere.Instance.voidRadius <= targetRadius) {
                 // The positive adjustment is clamped to never exceed that target radius
-                voidSphere.voidRadius = Mathf.Clamp(voidSphere.voidRadius + adjustionSpeed * Time.fixedDeltaTime, 0, targetRadius);
+                VoidSphere.Instance.voidRadius = Mathf.Clamp(VoidSphere.Instance.voidRadius + adjustionSpeed * Time.fixedDeltaTime, 0, targetRadius);
                 yield return new WaitForFixedUpdate();
             }
 
-            voidSphere.voidRadius = targetRadius;
+            VoidSphere.Instance.voidRadius = targetRadius;
         }
 
         // Case that the sphere must retract
-        else if (targetRadius < voidSphere.voidRadius) {
+        else if (targetRadius < VoidSphere.Instance.voidRadius) {
             
-            while (voidSphere.voidRadius >= targetRadius) {
+            while (VoidSphere.Instance.voidRadius >= targetRadius) {
                 // The negative adjustment is clamped to never exceed 0
-                voidSphere.voidRadius = Mathf.Clamp(voidSphere.voidRadius - adjustionSpeed * Time.fixedDeltaTime, 0, Mathf.Infinity);
+                VoidSphere.Instance.voidRadius = Mathf.Clamp(VoidSphere.Instance.voidRadius - adjustionSpeed * Time.fixedDeltaTime, 0, Mathf.Infinity);
                 yield return new WaitForFixedUpdate();
             }
 
-            voidSphere.voidRadius = targetRadius;
+            VoidSphere.Instance.voidRadius = targetRadius;
         }
     }
 }
