@@ -18,7 +18,8 @@ public class BaseMotor : MonoBehaviour {
 	[SerializeField] protected float terminalVelocity = 152.0f;
 	[SerializeField] protected float slopeThreshold = 55.0f;
 	[SerializeField] protected float friction = 15f;
-	[SerializeField] protected float turnSpeed = 0.20f;
+	[SerializeField] protected float mouseTurnSpeed = 0.10f;
+	[SerializeField] protected float controllerTurnSpeed = 2f;
 	[SerializeField] protected float VerticalVelocity = 0f;
 
 	// Components
@@ -65,7 +66,8 @@ public class BaseMotor : MonoBehaviour {
 
 	#region Getters
 	public float Speed { get { return baseSpeed * SpeedModifier; } }
-	public float TurnSpeed { get { return turnSpeed * TurnSpeedModifier; } }
+	public float ControllerTurnSpeed { get { return controllerTurnSpeed * TurnSpeedModifier; } }
+	public float MouseTurnSpeed { get { return mouseTurnSpeed * TurnSpeedModifier; } }
 	public float Gravity { get { return baseGravity * gravityModifier; } }
 	public float SlopeThreshold { get { return slopeThreshold; } }
 	public float TerminalVelocity { get { return terminalVelocity; } }
@@ -76,6 +78,9 @@ public class BaseMotor : MonoBehaviour {
 		// Component setup
 		controller = GetComponent<CharacterController>();
 		Anim = GetComponentInChildren<Animator>();
+
+		//lock cursor in game
+		Cursor.lockState = CursorLockMode.Locked;
 
 		// Modifier setup
 		turnSpeedModifier = 1f;
