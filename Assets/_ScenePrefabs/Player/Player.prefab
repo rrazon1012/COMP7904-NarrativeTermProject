@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 3779671723090125660}
   - component: {fileID: 3118109194292411570}
   - component: {fileID: 2891267976102518293}
+  - component: {fileID: 2405977378549657639}
+  - component: {fileID: 3562559443177899064}
   - component: {fileID: 3779671723090125663}
   - component: {fileID: 3779671723090125662}
   - component: {fileID: 3779671723090125634}
@@ -135,8 +137,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: PlayerControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -194,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58045c59934ea6a48817a5e0577d6f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voidSphere: {fileID: 0}
   targetSphere: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -204,6 +205,49 @@ MonoBehaviour:
   aimVoidState: {fileID: 11400000, guid: 0238408f0d2727744874215c2d66d69f, type: 2}
   focusRepressState: {fileID: 11400000, guid: cefde9885779e1649a36334bce035bc3, type: 2}
   castingState: {fileID: 11400000, guid: 16dff97dc11807a42852d91021a68fd1, type: 2}
+--- !u!114 &2405977378549657639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779671723090125637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d936f5a8d7cfca444af98c966c862dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interacting: 0
+  currentInteraction: {fileID: 0}
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  nearbyInteractables: []
+  interactionCooldown: 0.6
+--- !u!114 &3562559443177899064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779671723090125637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd746bbc64193184799a9cb3f1494ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewExpandsClockwise: 0
+  viewRadius: 0
+  viewAngle: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
+  viewMeshFilter: {fileID: 0}
+  meshResolution: 0.1
 --- !u!114 &3779671723090125663
 MonoBehaviour:
   m_ObjectHideFlags: 0
