@@ -68,76 +68,77 @@ public class intr_Lock : InteractableObject
 
     public void increment_First()
     {
-        if (comb1 > 9)
+        if (comb1 >= 9)
         {
             comb1 = 0;
         }
         else
         {
-            comb1++;
+            ++comb1;
         }
     }
     public void increment_Second()
     {
-        if (comb2 > 9)
+        if (comb2 >= 9)
         {
             comb2 = 0;
         }
         else
         {
-            comb2++;
+            ++comb2;
         }
     }
     public void increment_Third()
     {
-        if (comb3 > 9)
+        if (comb3 >= 9)
         {
             comb3 = 0;
         }
         else
         {
-            comb3++;
+            ++comb3;
         }
     }
     public void increment_Fourth()
     {
-        if (comb4 > 9)
+        if (comb4 >= 9)
         {
             comb4 = 0;
         }
         else
         {
-            comb4++;
+            
+            ++comb4;
         }
     }
     public void decrement_First()
     {
-        if (comb1 < 0) { comb1 = 9; } else { comb1--; }
+        if (comb1 <= 0) { comb1 = 9; } else { --comb1; }
     }
     public void decrement_Second()
     {
-        if (comb2 < 0) { comb2 = 9; } else { comb2--; }
+        if (comb2 <= 0) { comb2 = 9; } else { --comb2; }
     }
     public void decrement_Third()
     {
-        if (comb3 < 0)
+        if (comb3 <= 0)
         {
             comb3 = 9;
         }
         else
         {
-            comb3--;
+            --comb3;
         }
     }
     public void decrement_Fourth()
     {
-        if (comb4 < 0)
+        if (comb4 <= 0)
         {
             comb4 = 9;
         }
         else
         {
-            comb4--;
+            --comb4;
         }
     }
 
