@@ -107,7 +107,6 @@ public class VoidController : MonoBehaviour
     public void FocusRepress() {
         Debug.Log("Focusing Void...");
 
-        RaycastHit hit;
         focusTime += Time.fixedDeltaTime;
 
     }

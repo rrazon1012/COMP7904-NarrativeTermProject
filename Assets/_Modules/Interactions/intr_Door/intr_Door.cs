@@ -35,9 +35,16 @@ public class intr_Door : InteractableObject
                 doorObject.transform.rotation = Quaternion.Euler(Vector3.zero);
             }
 
+            PlayInteractionAudio();
             open = !open;
         }
         
+    }
+
+    protected override void PlayInteractionAudio() {
+        if (interactionAudio != null && interactionAudio.Length > 0) {
+            AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio[0], this.transform.position);
+        }
     }
 
 }
