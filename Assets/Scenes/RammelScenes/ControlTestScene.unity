@@ -254,7 +254,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17428
+  m_Name: pb_Mesh24940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -537,7 +537,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17474
+  m_Name: pb_Mesh24986
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1875,7 +1875,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17348
+  m_Name: pb_Mesh24844
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6391,8 +6391,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -83.1, y: 27.4}
-  m_SizeDelta: {x: -504.58707, y: -204.03296}
+  m_AnchoredPosition: {x: -84.76, y: 27.4}
+  m_SizeDelta: {x: -477.59274, y: -204.03296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &924294237
 MonoBehaviour:
@@ -8137,7 +8137,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17278
+  m_Name: pb_Mesh24766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8696,8 +8696,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 97.5, y: 27.4}
-  m_SizeDelta: {x: -504.58707, y: -204.03296}
+  m_AnchoredPosition: {x: 97.21, y: 27.4}
+  m_SizeDelta: {x: -478.32986, y: -204.03296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1308622109
 MonoBehaviour:
@@ -9113,8 +9113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 38.2, y: 27.4}
-  m_SizeDelta: {x: -504.58707, y: -204.03296}
+  m_AnchoredPosition: {x: 37.5, y: 27.4}
+  m_SizeDelta: {x: -478.2338, y: -204.03296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1404877459
 MonoBehaviour:
@@ -13390,8 +13390,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24, y: 27.4}
-  m_SizeDelta: {x: -504.58707, y: -204.03296}
+  m_AnchoredPosition: {x: -23.78, y: 27.400002}
+  m_SizeDelta: {x: -477.07043, y: -204.03296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130783429
 MonoBehaviour:
