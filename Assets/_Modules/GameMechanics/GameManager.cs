@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
     //public GameObject pauseScreen;
+    public GameObject door;
 
     private bool isPaused = false;
 

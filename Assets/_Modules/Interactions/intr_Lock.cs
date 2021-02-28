@@ -50,6 +50,9 @@ public class intr_Lock : InteractableObject
         text_comb2.text = comb2.ToString();
         text_comb3.text = comb3.ToString();
         text_comb4.text = comb4.ToString();
+        if (is_Locked == false) {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 
     public override void OnInteraction(InteractionManager interactor)
@@ -149,6 +152,7 @@ public class intr_Lock : InteractableObject
         {
             Debug.Log(password.Equals(comb1 + "" + comb2 + "" + comb3 + "" + comb4));
             is_Locked = false;
+            EventSystem.current.LockOpen();
             return true; 
         } 
         else 

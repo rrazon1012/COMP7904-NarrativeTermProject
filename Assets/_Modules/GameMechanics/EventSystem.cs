@@ -41,4 +41,10 @@ public class EventSystem : MonoBehaviour
     {
         onPlayerDeath?.Invoke();
     }
+    
+    public event Action onLockOpen;
+    public void LockOpen()
+    {
+        onLockOpen?.Invoke();
+    }
 }
