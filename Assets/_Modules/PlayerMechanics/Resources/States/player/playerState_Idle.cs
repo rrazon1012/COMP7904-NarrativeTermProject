@@ -20,7 +20,8 @@ public class playerState_Idle : Substate {
 
 
         // If the player presses Action 1, reveal the void.
-        if (latestInput.Equals(InputName.Action1) && !playerFrame.voidController.VoidActive && playerFrame.interactionManager.currentInteraction == null) {
+        if (latestInput.Equals(InputName.Action1) && !playerFrame.voidController.VoidActive && playerFrame.interactionManager.currentInteraction == null)
+        {
 
             // 1. Manage the input.
             Debug.Log("Action 1 Performed. ");
@@ -31,7 +32,8 @@ public class playerState_Idle : Substate {
         }
 
         // If the player presses Action 2, repress the void.
-        else if (latestInput.Equals(InputName.Action2) && playerFrame.voidController.VoidActive && playerFrame.interactionManager.currentInteraction == null) {
+        else if (latestInput.Equals(InputName.Action2) && playerFrame.voidController.VoidActive && playerFrame.interactionManager.currentInteraction == null)
+        {
             Debug.Log("Action 2 Performed. ");
 
             // 1. Manage the input.
@@ -39,13 +41,23 @@ public class playerState_Idle : Substate {
 
             // 2. Manage the state transition.
             frame.StateTransition(playerFrame.voidController.FocusRepressState);
-        } else if ( playerFrame.interactionManager.currentInteraction is InspectableObject && !playerFrame.inspectController.IsInspecting) {
+        }
+        else if (playerFrame.interactionManager.currentInteraction is InspectableObject && !playerFrame.inspectController.IsInspecting)
+        {
 
             // 1. Manage the input.
             playerFrame.inputBuffer.PopQueuedInput();
 
             // 2. Manage the state transition.
             frame.StateTransition(playerFrame.inspectController.InitiateInspectState);
+        }
+        else if (playerFrame.interactionManager.currentInteraction is intr_Lock && !playerFrame.lockController.IsLock) {
+
+            // 1. Manage the input.
+            playerFrame.inputBuffer.PopQueuedInput();
+
+            // 2. Manage the state transition.
+            frame.StateTransition(playerFrame.lockController.LockState);
         }
     }
     
