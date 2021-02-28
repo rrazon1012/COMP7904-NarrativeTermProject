@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: bea7fa376f932ba419f3d1fc95bd1a2b, type: 3}
         m_Scale: {x: 4.01, y: 4}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
@@ -49,6 +49,6 @@ Material:
     m_Colors:
     - _EdgeColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 1}
     - _LightColor: {r: 0.5896226, g: 1, b: 0.8605233, a: 0}
-    - _MainColor: {r: 0, g: 1, b: 0.5030501, a: 1}
+    - _MainColor: {r: 0.09411765, g: 0.09411765, b: 0.09411765, a: 1}
     - _NoiseScale: {r: 0.15, g: 0.15, b: 0, a: 0}
   m_BuildTextureStacks: []
