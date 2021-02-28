@@ -8,6 +8,8 @@ public class PlayerStateFrame : StateFrame {
     [HideInInspector] public PlayerMotor motor;
     [HideInInspector] public Animator animator;
     [HideInInspector] public VoidController voidController;
+    [HideInInspector] public InteractionManager interactionManager;
+    [HideInInspector] public InspectController inspectController;
 
     
     void Awake() {
@@ -15,5 +17,7 @@ public class PlayerStateFrame : StateFrame {
         motor = this.GetComponent<PlayerMotor>();
         animator = this.GetComponent<Animator>();
         voidController = this.GetComponent<VoidController>();
+        interactionManager = this.GetComponent<InteractionManager>();
+        inspectController = this.GetComponent<InspectController>();
     }
 }

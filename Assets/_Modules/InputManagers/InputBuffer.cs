@@ -15,6 +15,9 @@ public static class InputName {
 	public static string Action3 { get { return "Action3"; } }
 	public static string Action4 { get { return "Action4"; } }
 
+	public static string Interact { get { return "Interact"; } }
+	public static string Exit { get { return "Exit"; } }
+
 }
 
 // Input Buffer is made to be a resource that is polled by other components.
@@ -47,6 +50,9 @@ public class InputBuffer : MonoBehaviour
 
     [SerializeField] private Vector2 mouseAxis;
     public Vector2 GetMouseAxis() { return mouseAxis; }
+    
+    [SerializeField] private Vector2 inspectAxis;
+    public Vector2 GetInspectAxis() { return inspectAxis; }
 
     // Both Combat Action Triggers and Holds are stored in a Lookup Table.
     //      Access to the values in the table are controlled within the InputBuffer class.
@@ -181,6 +187,8 @@ public class InputBuffer : MonoBehaviour
         inputActions.PlayerControls.Action3.performed += context => BufferInput(context);
         inputActions.PlayerControls.Action4.performed += context => BufferInput(context);
 
+        inputActions.InspectControls.Exit.performed += context => BufferInput(context);
+
     }
 
     void OnMovement(InputValue value) {
@@ -201,6 +209,14 @@ public class InputBuffer : MonoBehaviour
 
     void OnMouseAxisY(InputValue value) {
         mouseAxis.y = value.Get<float>();
+    }
+    
+    void OnInspectAxisX(InputValue value) {
+        inspectAxis.x = value.Get<float>();
+    }
+
+    void OnInspectAxisY(InputValue value) {
+        inspectAxis.y = value.Get<float>();
     }
 
     void OnControlsChanged() {
@@ -295,5 +311,7 @@ public class InputBuffer : MonoBehaviour
         inputActions.PlayerControls.Action2.performed -= context => BufferInput(context);
         inputActions.PlayerControls.Action3.performed -= context => BufferInput(context);
         inputActions.PlayerControls.Action4.performed -= context => BufferInput(context);
+
+        inputActions.InspectControls.Exit.performed -= context => BufferInput(context);
     }
 }
