@@ -36,18 +36,6 @@ public class EventSystem : MonoBehaviour
         onObjectRangeExit?.Invoke();
     }
 
-    public event Action onObjectInteract;
-    public void ObjectInteract()
-    {
-        onObjectInteract?.Invoke();
-    }
-
-    public event Action onObjectFinish;
-    public void ObjectFinish()
-    {
-        onObjectFinish?.Invoke();
-    }
-
     public event Action onPlayerDeath;
     public void PlayerDeath()
     {

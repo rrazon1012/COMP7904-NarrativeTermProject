@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
+    //public GameObject pauseScreen;
+
+    private bool isPaused = false;
 
     private void Awake()
     {
@@ -18,53 +21,60 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (!SceneManager.GetActiveScene().name.Equals("Main Menu"))
-        {
-            if (GM != this)
-                GM = this;
+        if (GM != this)
+            GM = this;
 
-            EventSystem.current.onPlayerRangeEnter += OnPlayerRangeEnter;
-            EventSystem.current.onPlayerRangeExit += OnPlayerRangeExit;
-            EventSystem.current.onObjectRangeEnter += OnObjectRangeEnter;
-            EventSystem.current.onObjectRangeExit += OnObjectRangeExit;
-            EventSystem.current.onObjectInteract += OnObjectInteract;
-            EventSystem.current.onObjectFinish += OnObjectFinish;
-            EventSystem.current.onPlayerDeath += OnPlayerDeath;
-        }
+        EventSystem.current.onPlayerRangeEnter += OnPlayerRangeEnter;
+        EventSystem.current.onPlayerRangeExit += OnPlayerRangeExit;
+        EventSystem.current.onObjectRangeEnter += OnObjectRangeEnter;
+        EventSystem.current.onObjectRangeExit += OnObjectRangeExit;
+        EventSystem.current.onPlayerDeath += OnPlayerDeath;
     }
 
     private void OnPlayerRangeEnter()
     {
-        //Player entered
+        Debug.Log("Player range enter");
     }
 
     private void OnPlayerRangeExit()
     {
-        //Player exit
+        Debug.Log("Player range exit");
     }
 
     private void OnObjectRangeEnter()
     {
-        //Object entered
+        Debug.Log("Object range enter");
     }
 
     private void OnObjectRangeExit()
     {
-        //Object exit
-    }
-
-    private void OnObjectInteract()
-    {
-        //Object interacted
-    }
-
-    private void OnObjectFinish()
-    {
-        //Object Finished
+        Debug.Log("Object range exit");
     }
 
     private void OnPlayerDeath()
     {
-        //I die
+        Debug.Log("I die");
+    }
+
+    private void PauseTime()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void ResumeTime()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        PauseTime();
+        //pauseScreen.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
