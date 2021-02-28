@@ -201,7 +201,6 @@ public class PlayerMotor : BaseMotor {
 
 	//private void OnTriggerEnter(Collider col)
 	//{
-	//	Debug.Log("Enter");
 	//	if (col.tag == "BoxTrigger")
 	//	{
 	//		EventSystem.current.PlayerRangeEnter();
@@ -210,7 +209,6 @@ public class PlayerMotor : BaseMotor {
 
 	//private void OnTriggerExit(Collider col)
 	//{
-	//	Debug.Log("Exit");
 	//	if (col.tag == "BoxTrigger")
 	//	{
 	//		EventSystem.current.PlayerRangeExit();
