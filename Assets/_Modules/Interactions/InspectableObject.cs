@@ -19,6 +19,7 @@ public class InspectableObject : InteractableObject
 
         if (active)
         {
+            Debug.Log("Inspect");
             base.OnInteraction(interactor);
             interactor.currentInteraction = this;
         }
