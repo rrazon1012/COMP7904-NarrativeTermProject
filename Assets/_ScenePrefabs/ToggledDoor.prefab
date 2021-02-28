@@ -2085,6 +2085,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directional: 1
   interactionName: Open Door
+  interactionAudio:
+  - {fileID: 11400000, guid: 8029c271a43dd9d4f95fc87be8885940, type: 2}
+  - {fileID: 0}
+  interactionFailedAudio: []
   active: 0
   doorObject: {fileID: 7621270616271230900}
   openRotation: {x: 0, y: 79, z: 0}
