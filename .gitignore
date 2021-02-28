@@ -88,9 +88,6 @@ crashlytics-build.properties
 # Addon Meta files
 /[Aa]ssets/[Aa]ddons/[Aa]mplify[Ss]hader[Ee]ditor/**/*.meta
 
-#ProBuilder Settings File
-[Pp]roject[Ss]ettings/[Pp]ackages/com.unity.probuilder/[Ss]ettings.json
-
 # Windows thumbnail cache files
 Thumbs.db
 Thumbs.db:encryptable
