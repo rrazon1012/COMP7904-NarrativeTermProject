@@ -40,6 +40,11 @@ public abstract class InteractableObject : MonoBehaviour {
         promptCanvas.gameObject.SetActive(false);
     }
 
+    protected void UpdateInteractionName(string newName) {
+        interactionName = newName;
+        interactionText.text = interactionName;
+    }
+
     // If an actor enters the interaction range, add this interactable to their interaction list.
     public void UpdateInteraction() {
         fov.FindVisibleTargets();
