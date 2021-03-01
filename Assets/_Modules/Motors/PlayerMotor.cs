@@ -199,19 +199,19 @@ public class PlayerMotor : BaseMotor {
 		return input;
 	}
 
-	//private void OnTriggerEnter(Collider col)
-	//{
-	//	if (col.tag == "BoxTrigger")
-	//	{
-	//		EventSystem.current.PlayerRangeEnter();
-	//	}
-	//}
+	private void OnTriggerEnter(Collider col)
+	{
+		if (col.tag == "BoxTrigger")
+		{
+			EventSystem.current.PlayerRangeEnter();
+		}
+	}
 
-	//private void OnTriggerExit(Collider col)
-	//{
-	//	if (col.tag == "BoxTrigger")
-	//	{
-	//		EventSystem.current.PlayerRangeExit();
-	//	}
-	//}
+	private void OnTriggerExit(Collider col)
+	{
+		if (col.tag == "BoxTrigger")
+		{
+			EventSystem.current.PlayerRangeExit();
+		}
+	}
 }
