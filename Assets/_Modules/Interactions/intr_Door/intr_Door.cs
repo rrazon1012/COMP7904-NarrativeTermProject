@@ -40,13 +40,20 @@ public class intr_Door : InteractableObject
                 }
 
                 open = !open;
+                PlayInteractionAudio();
             }
         }
         
     }
 
-    public void LockOpen() {
+    public void LockOpen()
+    {
         locked = false;
+    }
+    protected override void PlayInteractionAudio() {
+        if (interactionAudio != null && interactionAudio.Length > 0) {
+            AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio[0], this.transform.position);
+        }
     }
 
 }

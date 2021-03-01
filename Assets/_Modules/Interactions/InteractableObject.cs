@@ -8,7 +8,7 @@ using TMPro;
 [RequireComponent(typeof(MeshCollider))]
 public abstract class InteractableObject : MonoBehaviour {
     public static float INTERACTION_RANGE = 4f;
-    public static float INTERACTION_ANGLE = 90f;
+    public static float INTERACTION_ANGLE = 180f;
     protected FieldOfView fov;
     protected Canvas promptCanvas;
     protected TextMeshProUGUI interactionText;
@@ -19,8 +19,8 @@ public abstract class InteractableObject : MonoBehaviour {
     public bool Directional { get { return directional; } }
 
     [SerializeField] protected string interactionName = "Pick Up";
-    // [SerializeField] protected AudioCollection interactionAudio = null;
-    // [SerializeField] protected AudioCollection interactionFailedAudio = null;
+    [SerializeField] protected AudioCollection[] interactionAudio = null;
+    [SerializeField] protected AudioCollection[] interactionFailedAudio = null;
     [SerializeField] protected bool active = false;
     
     // Start is called before the first frame update
@@ -97,16 +97,16 @@ public abstract class InteractableObject : MonoBehaviour {
         yield return null;
     }
 
-    protected void PlayInteractionAudio() {
-        // if (interactionAudio != null) {
-        //     AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio, this.transform.position);
-        // }
+    protected virtual void PlayInteractionAudio() {
+        if (interactionAudio != null && interactionAudio.Length > 0) {
+            AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio[0], this.transform.position);
+        }
     }
 
-    protected void PlayInteractionFailedAudio() {
-        // if (interactionFailedAudio != null) {
-        //     AudioDirector.Instance.PlayRandomAudioAtPoint(interactionFailedAudio, this.transform.position);
-        // }
+    protected virtual void PlayInteractionFailedAudio() {
+        if (interactionFailedAudio != null && interactionFailedAudio.Length > 0) {
+            AudioDirector.Instance.PlayRandomAudioAtPoint(interactionFailedAudio[0], this.transform.position);
+        }
     }
     
 }
