@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public CanvasGroup endScreen;
     //public GameObject pauseScreen;
     public GameObject door;
+    public GameObject key;
 
     private bool isPaused = false;
     private bool endEntered = false;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onObjectRangeEnter += OnObjectRangeEnter;
         EventSystem.current.onObjectRangeExit += OnObjectRangeExit;
         EventSystem.current.onPlayerDeath += OnPlayerDeath;
+        EventSystem.current.onKeyEnterTrigger += OnKeyEnterTrigger;
     }
 
     private void OnPlayerRangeEnter()
@@ -98,5 +100,14 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+    
+    public void OnKeyEnterTrigger()
+    {
+        player.GetComponent<InteractionManager>().currentInteraction = null;
+        player.GetComponent<InteractionManager>().interacting = false;
+
+        key.SetActive(false); //Gameobject.Destroy(key);
+        door.GetComponent<intr_Door>().LockOpen();
     }
 }
