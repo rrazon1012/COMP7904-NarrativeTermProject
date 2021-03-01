@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     private bool endEntered = false;
 
-    private const float END_ANIM_DUR = 3f;
+    private const float END_ANIM_DUR = 5f;
     private void Awake()
     {
         if (GM == null)
