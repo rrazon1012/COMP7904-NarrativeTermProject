@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public CanvasGroup endScreen;
     //public GameObject pauseScreen;
+    public GameObject door;
 
     private bool isPaused = false;
     private bool endEntered = false;

@@ -422,6 +422,52 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "LockControls",
+            "id": "57a7e352-944c-4951-b264-3b314ae90a9e",
+            "actions": [
+                {
+                    "name": "ExitLock",
+                    "type": "Button",
+                    "id": "166752c8-dbdf-4183-9609-c2b012635a72",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "EnterCombination",
+                    "type": "Button",
+                    "id": "b1ac3cc7-c0f1-4255-855b-1a3eed5c4042",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "73d7c8c4-211e-4049-b24c-d97e259bcad8",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ExitLock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "abf78877-cd7c-4b6c-ad29-75ec1bdedf90",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "EnterCombination",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
