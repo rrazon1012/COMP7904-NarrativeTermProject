@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bd07036d6501646bd5e1f1047f57aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endScreen: {fileID: 0}
+  endScreen: {fileID: 1971045406}
 --- !u!4 &508643554
 Transform:
   m_ObjectHideFlags: 0
@@ -511,7 +511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &594080722 stripped
 Transform:
@@ -9981,7 +9981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8927555458257104559, guid: 0f70bbda1a1b1494fb2f60aa08953983, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8927555458257104559, guid: 0f70bbda1a1b1494fb2f60aa08953983, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9997,6 +9997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f70bbda1a1b1494fb2f60aa08953983, type: 3}
+--- !u!225 &1971045406 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 5028800110107064257, guid: 82e921f3df1ca5b448caa7b51c67d93b, type: 3}
+  m_PrefabInstance: {fileID: 5028800109776749533}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &2017222808
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -10242,7 +10247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5028800109684968275, guid: 82e921f3df1ca5b448caa7b51c67d93b, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5028800109684968275, guid: 82e921f3df1ca5b448caa7b51c67d93b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
