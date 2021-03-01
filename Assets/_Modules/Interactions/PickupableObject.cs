@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickupableObject : InteractableObject
 {
     [SerializeField] GameObject item_holder;
-    protected bool picked_up = false;
+    public bool picked_up = false;
     void FixedUpdate()
     {
         UpdateInteraction();
@@ -37,4 +37,10 @@ public class PickupableObject : InteractableObject
         }
 
     }
+
+    public void undoPickup() {
+        
+    }
+
+
 }
