@@ -16900,13 +16900,32 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5109193628064748811, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
   m_PrefabInstance: {fileID: 1401626443}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1410153566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8403428630519614565, guid: dedd30d5dccf3ce429e42c907fd5d99f, type: 3}
+  m_PrefabInstance: {fileID: 1630151555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1410153570
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410153566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6530016494530067481, guid: dedd30d5dccf3ce429e42c907fd5d99f, type: 3}
 --- !u!43 &1414308132
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh230692
+  m_Name: pb_Mesh247686
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18637,7 +18656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1724581078
 MeshCollider:
   m_ObjectHideFlags: 0
