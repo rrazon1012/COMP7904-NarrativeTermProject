@@ -204,8 +204,6 @@ public class PlayerMotor : BaseMotor {
 		if (col.tag == "BoxTrigger")
 		{
 			EventSystem.current.PlayerRangeEnter();
-			SetMovementLock(true);
-			SetRotationLock(true);
 		}
 	}
 
