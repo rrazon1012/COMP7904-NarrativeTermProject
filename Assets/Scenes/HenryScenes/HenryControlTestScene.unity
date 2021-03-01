@@ -505,6 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 339599442}
   endScreen: {fileID: 1971045406}
+  door: {fileID: 0}
 --- !u!4 &508643554
 Transform:
   m_ObjectHideFlags: 0
