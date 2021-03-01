@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
+    public CanvasGroup endScreen;
     //public GameObject pauseScreen;
 
     private bool isPaused = false;
