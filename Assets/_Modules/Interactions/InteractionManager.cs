@@ -77,13 +77,23 @@ public class InteractionManager : MonoBehaviour
                     }
                     // InteractableObject interactable = nearbyInteractables[0].GetComponent<InteractableObject>();
                 }
-
                 // At this point, we know there are more than one interactable, and they must be sorted by distance.
             } else {
-                Debug.Log("No nearby interactions");
+                Debug.Log("No Nearby Interactions");
             }
         }
         
+    }
+
+    public Transform getCloserObject(Transform t1, Transform t2) {
+        if (Vector3.Distance(t1.position, this.transform.position) < Vector3.Distance(t1.position, this.transform.position))
+        {
+            return t1;
+        }
+        else 
+        {
+            return t2;
+        }
     }
 
     protected IEnumerator Cooldown() {

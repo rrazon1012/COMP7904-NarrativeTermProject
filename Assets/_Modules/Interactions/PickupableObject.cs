@@ -25,10 +25,12 @@ public class PickupableObject : InteractableObject
                 //transform.SetParent(item_holder.transform);
                 transform.position = item_holder.transform.position;
                 interactor.currentInteraction = this;
+                interactor.interacting = true;
                 promptCanvas.enabled = false;
             }
             else {
                 interactor.currentInteraction = null;
+                interactor.interacting = false;
                 promptCanvas.enabled = true;
             }
             picked_up = !picked_up;
