@@ -4998,15 +4998,15 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: 2d99c4ba773b74442b65d2e9cb72bfcd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e9fdc4ab68a529243b9365bcd12ea83f, type: 2}
+      objectReference: {fileID: 2100000, guid: 028237a7f07074c4992382635fac273a, type: 2}
     - target: {fileID: 2300000, guid: 2d99c4ba773b74442b65d2e9cb72bfcd, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: ee8ffd2c80317054a87b8158ffa802ae, type: 2}
+      objectReference: {fileID: 2100000, guid: e9fdc4ab68a529243b9365bcd12ea83f, type: 2}
     - target: {fileID: 2300000, guid: 2d99c4ba773b74442b65d2e9cb72bfcd, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: e9fdc4ab68a529243b9365bcd12ea83f, type: 2}
+      objectReference: {fileID: 2100000, guid: 6831814556a82234c9a8418f34b130ec, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d99c4ba773b74442b65d2e9cb72bfcd, type: 3}
 --- !u!4 &858708807 stripped
@@ -6899,6 +6899,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directional: 1
   interactionName: Behold The Orb of Interaction
+  interactionAudio: []
+  interactionFailedAudio: []
   active: 0
 --- !u!114 &1432760807
 MonoBehaviour:
