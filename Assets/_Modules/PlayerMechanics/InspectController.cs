@@ -93,7 +93,9 @@ public class InspectController : MonoBehaviour
         insItem.transform.position = InspectorContainer.transform.position;
         insItem.transform.SetParent(InspectorContainer.transform);
         insItem.layer = INSPECTABLE_LAYER;
-
+        foreach (Transform child in insItem.transform) {
+            child.gameObject.layer = INSPECTABLE_LAYER;
+        }
         item.SetActive(false);
         itemRef = item;
     }

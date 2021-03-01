@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
+    public GameObject player;
+    public CanvasGroup endScreen;
     //public GameObject pauseScreen;
+    public GameObject door;
 
     private bool isPaused = false;
+    private bool endEntered = false;
 
+    private const float END_ANIM_DUR = 3f;
     private void Awake()
     {
         if (GM == null)
@@ -33,7 +38,12 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerRangeEnter()
     {
-        Debug.Log("Player range enter");
+        if (!endEntered)
+        {
+            endEntered = true;
+            StartCoroutine(UIFade.FadeCanvas(endScreen, 0f, 1f, END_ANIM_DUR, 0f));
+            Invoke(nameof(DisableCharacterMovement), END_ANIM_DUR);
+        }
     }
 
     private void OnPlayerRangeExit()
@@ -54,6 +64,18 @@ public class GameManager : MonoBehaviour
     private void OnPlayerDeath()
     {
         Debug.Log("I die");
+    }
+
+    private void EnableCharacterMovement()
+    {
+        player.GetComponent<BaseMotor>().SetMovementLock(false);
+        player.GetComponent<BaseMotor>().SetRotationLock(false);
+    }
+
+    private void DisableCharacterMovement()
+    {
+        player.GetComponent<BaseMotor>().SetMovementLock(true);
+        player.GetComponent<BaseMotor>().SetRotationLock(true);
     }
 
     private void PauseTime()
