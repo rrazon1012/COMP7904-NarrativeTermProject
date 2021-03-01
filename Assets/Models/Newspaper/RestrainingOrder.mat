@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: RestrainingOrder
   m_Shader: {fileID: 4800000, guid: 90a6dbf7312d0244196da1098ba3a78c, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DarkTexture:
-        m_Texture: {fileID: 2800000, guid: 750b1bd7ba8bd28489650de6d0a95cc5, type: 3}
+        m_Texture: {fileID: 2800000, guid: b85d74af87da17d4ebfe28926807b820, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LightTexture:
-        m_Texture: {fileID: 2800000, guid: a9f953c7353804247b8c3ed6e1c46a2e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9bf5e0b566b0fb140995670d291a837b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:

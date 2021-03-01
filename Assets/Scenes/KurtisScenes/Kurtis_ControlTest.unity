@@ -262,6 +262,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2597592315478904306, guid: 53d9baa63a839b741af0f149764dd7c3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d4feed4897ef61a4d8cc812afb8dcf29, type: 2}
     - target: {fileID: 919132149155446097, guid: 53d9baa63a839b741af0f149764dd7c3, type: 3}
       propertyPath: m_Name
       value: Medal
@@ -602,6 +606,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1240121408737663683, guid: a25cf708888de5f41b3050aa4b1173b0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3b2457a9ac13d745923b54692e65689, type: 2}
     - target: {fileID: 919132149155446097, guid: a25cf708888de5f41b3050aa4b1173b0, type: 3}
       propertyPath: m_Name
       value: Newspaper_Closed
@@ -1015,7 +1023,7 @@ PrefabInstance:
     - target: {fileID: -923982597988420235, guid: 85425f2cbec698448929226642fdf765, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: edd2cfcff706f13439f2a5066e50639a, type: 2}
+      objectReference: {fileID: 2100000, guid: 9fe0aff7ff9d82841a4398f8613516fa, type: 2}
     - target: {fileID: 919132149155446097, guid: 85425f2cbec698448929226642fdf765, type: 3}
       propertyPath: m_Name
       value: Portrait_Hanging
