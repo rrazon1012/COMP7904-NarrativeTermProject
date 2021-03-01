@@ -10,6 +10,7 @@ public class PlayerStateFrame : StateFrame {
     [HideInInspector] public VoidController voidController;
     [HideInInspector] public InspectController inspectController;
     [HideInInspector] public InteractionManager interactionManager;
+    [HideInInspector] public LockController lockController;
 
     
     void Awake() {
@@ -19,5 +20,6 @@ public class PlayerStateFrame : StateFrame {
         voidController = this.GetComponent<VoidController>();
         inspectController = this.GetComponent<InspectController>();
         interactionManager = this.GetComponent<InteractionManager>();
+        lockController = this.GetComponent<LockController>();
     }
 }

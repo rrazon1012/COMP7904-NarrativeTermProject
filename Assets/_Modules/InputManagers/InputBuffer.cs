@@ -15,6 +15,9 @@ public static class InputName {
 	public static string Action3 { get { return "Action3"; } }
 	public static string Action4 { get { return "Action4"; } }
 	public static string Exit { get { return "Exit"; } }
+	public static string Enter { get { return "Enter"; } }
+	public static string EnterCombination { get { return "EnterCombination"; } }
+	public static string ExitLock { get { return "ExitLock"; } }
 	public static string Interact { get { return "Interact"; } }
 
 }
@@ -188,6 +191,9 @@ public class InputBuffer : MonoBehaviour
 
         inputActions.InspectControls.Exit.performed += context => BufferInput(context);
 
+        inputActions.LockControls.ExitLock.performed += context => BufferInput(context);
+        inputActions.LockControls.EnterCombination.performed += context => BufferInput(context);
+
     }
 
     void OnMovement(InputValue value) {
@@ -311,5 +317,8 @@ public class InputBuffer : MonoBehaviour
         inputActions.PlayerControls.Action4.performed -= context => BufferInput(context);
 
         inputActions.InspectControls.Exit.performed -= context => BufferInput(context);
+
+        inputActions.LockControls.ExitLock.performed -= context => BufferInput(context);
+        inputActions.LockControls.EnterCombination.performed -= context => BufferInput(context);
     }
 }

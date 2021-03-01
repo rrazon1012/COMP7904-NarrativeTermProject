@@ -435,6 +435,52 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""LockControls"",
+            ""id"": ""57a7e352-944c-4951-b264-3b314ae90a9e"",
+            ""actions"": [
+                {
+                    ""name"": ""ExitLock"",
+                    ""type"": ""Button"",
+                    ""id"": ""166752c8-dbdf-4183-9609-c2b012635a72"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""EnterCombination"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1ac3cc7-c0f1-4255-855b-1a3eed5c4042"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""73d7c8c4-211e-4049-b24c-d97e259bcad8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ExitLock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abf78877-cd7c-4b6c-ad29-75ec1bdedf90"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""EnterCombination"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -486,6 +532,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_InspectControls_InspectAxisY = m_InspectControls.FindAction("InspectAxisY", throwIfNotFound: true);
         m_InspectControls_Exit = m_InspectControls.FindAction("Exit", throwIfNotFound: true);
         m_InspectControls_Zoom = m_InspectControls.FindAction("Zoom", throwIfNotFound: true);
+        // LockControls
+        m_LockControls = asset.FindActionMap("LockControls", throwIfNotFound: true);
+        m_LockControls_ExitLock = m_LockControls.FindAction("ExitLock", throwIfNotFound: true);
+        m_LockControls_EnterCombination = m_LockControls.FindAction("EnterCombination", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -701,6 +751,47 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public InspectControlsActions @InspectControls => new InspectControlsActions(this);
+
+    // LockControls
+    private readonly InputActionMap m_LockControls;
+    private ILockControlsActions m_LockControlsActionsCallbackInterface;
+    private readonly InputAction m_LockControls_ExitLock;
+    private readonly InputAction m_LockControls_EnterCombination;
+    public struct LockControlsActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public LockControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ExitLock => m_Wrapper.m_LockControls_ExitLock;
+        public InputAction @EnterCombination => m_Wrapper.m_LockControls_EnterCombination;
+        public InputActionMap Get() { return m_Wrapper.m_LockControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LockControlsActions set) { return set.Get(); }
+        public void SetCallbacks(ILockControlsActions instance)
+        {
+            if (m_Wrapper.m_LockControlsActionsCallbackInterface != null)
+            {
+                @ExitLock.started -= m_Wrapper.m_LockControlsActionsCallbackInterface.OnExitLock;
+                @ExitLock.performed -= m_Wrapper.m_LockControlsActionsCallbackInterface.OnExitLock;
+                @ExitLock.canceled -= m_Wrapper.m_LockControlsActionsCallbackInterface.OnExitLock;
+                @EnterCombination.started -= m_Wrapper.m_LockControlsActionsCallbackInterface.OnEnterCombination;
+                @EnterCombination.performed -= m_Wrapper.m_LockControlsActionsCallbackInterface.OnEnterCombination;
+                @EnterCombination.canceled -= m_Wrapper.m_LockControlsActionsCallbackInterface.OnEnterCombination;
+            }
+            m_Wrapper.m_LockControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ExitLock.started += instance.OnExitLock;
+                @ExitLock.performed += instance.OnExitLock;
+                @ExitLock.canceled += instance.OnExitLock;
+                @EnterCombination.started += instance.OnEnterCombination;
+                @EnterCombination.performed += instance.OnEnterCombination;
+                @EnterCombination.canceled += instance.OnEnterCombination;
+            }
+        }
+    }
+    public LockControlsActions @LockControls => new LockControlsActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -739,5 +830,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnInspectAxisY(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+    }
+    public interface ILockControlsActions
+    {
+        void OnExitLock(InputAction.CallbackContext context);
+        void OnEnterCombination(InputAction.CallbackContext context);
     }
 }
