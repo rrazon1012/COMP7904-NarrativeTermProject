@@ -46,5 +46,11 @@ public class EventSystem : MonoBehaviour
     public void LockOpen()
     {
         onLockOpen?.Invoke();
+    } 
+    
+    public event Action onKeyEnterTrigger;
+    public void KeyEnterTrigger()
+    {
+        onKeyEnterTrigger?.Invoke();
     }
 }
