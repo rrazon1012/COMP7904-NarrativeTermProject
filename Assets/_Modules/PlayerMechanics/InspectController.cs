@@ -13,6 +13,7 @@ public class InspectController : MonoBehaviour
 
 
     [SerializeField] public GameObject InspectorContainer;
+    [SerializeField] public GameObject InspectorLight;
     [SerializeField] private PlayerInputActions controls;
     [SerializeField] protected Camera mainCam;
     [SerializeField] protected RenderTexture mainCamTex;
@@ -74,9 +75,8 @@ public class InspectController : MonoBehaviour
 
         //enable the canvas to overlay on top of the main camera
         Inspector.SetActive(true);
-
-        //set the raw image on the canvas to the rendered texture to display the object and the background simulating a popup object
-        mainCam.targetTexture = mainCamTex;
+        InspectorContainer.SetActive(true);
+        InspectorLight.SetActive(true);
         
         //disable player controls to avoid player from moving and enable inspect controls to allow the player to rotate object around
         inputcomp.actions.FindActionMap("PlayerControls").Disable();
@@ -90,12 +90,16 @@ public class InspectController : MonoBehaviour
         //hides gameobject
         //instantiate gameobject and place it inside Inspector container, change its layer to inspectable layer
         insItem = GameObject.Instantiate(item);
-        insItem.transform.position = InspectorContainer.transform.position;
+
+        //zero out the transforms of the object
         insItem.transform.SetParent(InspectorContainer.transform);
-        insItem.layer = INSPECTABLE_LAYER;
-        foreach (Transform child in insItem.transform) {
-            child.gameObject.layer = INSPECTABLE_LAYER;
-        }
+        insItem.transform.localPosition = Vector3.zero;
+        insItem.transform.localRotation = Quaternion.identity;
+
+        //insItem.layer = INSPECTABLE_LAYER;
+        //foreach (Transform child in insItem.transform) {
+        //    child.gameObject.layer = INSPECTABLE_LAYER;
+        //}
         item.SetActive(false);
         itemRef = item;
     }
@@ -103,10 +107,16 @@ public class InspectController : MonoBehaviour
     public void ExitInspect() {
         //set inspecting to false
         isInspecting = false;
+
+        //reset the rotation of the inspector container
+        InspectorContainer.transform.localRotation = Quaternion.identity;
+
         //disables canvas overlay
         Inspector.SetActive(false);
+        InspectorContainer.SetActive(false);
+        InspectorLight.SetActive(false);
         //removes render texture
-        mainCam.targetTexture = null;
+        //mainCam.targetTexture = null;
         //goes back to the default action map
         inputcomp.actions.FindActionMap("PlayerControls").Enable();
         inputcomp.actions.FindActionMap("InspectControls").Disable();
