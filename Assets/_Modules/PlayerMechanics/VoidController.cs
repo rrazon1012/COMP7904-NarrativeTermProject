@@ -13,6 +13,7 @@ public class VoidController : MonoBehaviour
     [SerializeField] protected LayerMask targetMask;
 
     [SerializeField] protected float castTime = 0.5f;
+    [SerializeField] protected float voidSpeed = 20f;
     public float CastTime { get { return castTime; } }
 
     protected bool voidActive = false;
@@ -47,6 +48,10 @@ public class VoidController : MonoBehaviour
             return newState;
         }
     }
+
+    [Header("Audio Collections")]
+    [SerializeField] protected AudioCollection sfx_OpenVoid;
+    [SerializeField] protected AudioCollection sfx_CloseVoid;
 
     void Start() {
         
@@ -92,6 +97,7 @@ public class VoidController : MonoBehaviour
         }
 
         voidActive = true;
+        AudioDirector.Instance.PlayRandomAudioAtPoint(sfx_OpenVoid, VoidSphere.Instance.transform.position);
 
         // If the void is currently changing in size, end that process.
         if (voidAdjustmentCoroutine != null) {
@@ -99,7 +105,7 @@ public class VoidController : MonoBehaviour
         }
 
         // Assign the new coroutine to the shared slot.
-        voidAdjustmentCoroutine = AdjustVoidSize(11f, 20);
+        voidAdjustmentCoroutine = AdjustVoidSize(11f, voidSpeed);
 
         StartCoroutine(voidAdjustmentCoroutine);
     }
@@ -119,12 +125,13 @@ public class VoidController : MonoBehaviour
         }
 
         voidActive = false;
+        AudioDirector.Instance.PlayRandomAudioAtPoint(sfx_CloseVoid, VoidSphere.Instance.transform.position);
 
         if (voidAdjustmentCoroutine != null) {
             StopCoroutine(voidAdjustmentCoroutine);
         }
 
-        voidAdjustmentCoroutine = AdjustVoidSize(0f, 20);
+        voidAdjustmentCoroutine = AdjustVoidSize(0f, voidSpeed);
 
         StartCoroutine(voidAdjustmentCoroutine);
     }

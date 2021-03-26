@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class VoidSphere : MonoBehaviour {
 
+    protected AudioSource audioSource;
+
     // Implemented VoidSphere as a singleton, so it's location can be easily referenced by shaders & scripts.
     protected static VoidSphere _instance;
     public static VoidSphere Instance {
@@ -31,7 +33,7 @@ public class VoidSphere : MonoBehaviour {
 
         // Check what kind of collider we're working with.
         
-        if (distanceToObject.magnitude < (voidRadius - (colliderRadius*0.5f))) {
+        if (distanceToObject.magnitude < (voidRadius - (colliderRadius * 0.5f))) {
             return true;
         }
         return false;
@@ -51,6 +53,7 @@ public class VoidSphere : MonoBehaviour {
     void Awake() {
         _instance = this;
         collisionManager = this.GetComponent<ColliderContainer>();
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     void Start() {
@@ -65,6 +68,12 @@ public class VoidSphere : MonoBehaviour {
         this.transform.localScale = new Vector3(VoidScale, VoidScale, VoidScale);
 
         UpdateGlobalShaderProperties();
+
+        if (Active) {
+            audioSource.volume = 0.3f;
+        } else {
+            audioSource.volume = 0.0f;
+        }
     }
 
     protected void UpdateGlobalShaderProperties() {
