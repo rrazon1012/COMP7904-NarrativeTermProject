@@ -26,6 +26,8 @@ public class VoidController : MonoBehaviour
     public void ResetFocus() { focusTime = 0.0f; }
     public bool RepressFocused { get { return focusTime >= targetFocusTime; } }
 
+    public bool isClosing = false;
+
     // States
     [Header("State Slots")]
 
@@ -144,7 +146,7 @@ public class VoidController : MonoBehaviour
 
         // Case that the sphere must retract
         else if (targetRadius < VoidSphere.Instance.voidRadius) {
-            
+            isClosing = true;
             while (VoidSphere.Instance.voidRadius >= targetRadius) {
                 // The negative adjustment is clamped to never exceed 0
                 VoidSphere.Instance.voidRadius = Mathf.Clamp(VoidSphere.Instance.voidRadius - adjustionSpeed * Time.fixedDeltaTime, 0, Mathf.Infinity);
@@ -153,5 +155,7 @@ public class VoidController : MonoBehaviour
 
             VoidSphere.Instance.voidRadius = targetRadius;
         }
+        isClosing = false;
+        Debug.Log("isclosing is now false");
     }
 }
