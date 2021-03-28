@@ -18,6 +18,18 @@ public class sfx_Footsteps : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate() {
+        // Count down the timer when the player is moving. Moving is set based on motor's Horizontal Velocity.
+        if (motor.IsMoving) {
+            timeToNextFootstep -= Time.fixedDeltaTime;
+
+            if (timeToNextFootstep <= 0) {
+                AudioDirector.Instance.PlayRandomAudioAtPoint(sfx_footsteps, this.transform.position);
+                timeToNextFootstep = footstepDelay;
+            }
+        } else {
+            // Set a short delay for the first footstep.
+            timeToNextFootstep = 0.1f;
+        }
         
     }
 }
