@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ba5ef85ceaff143aca947bded8d05e, type: 3}
   m_Name: sfx_Footstep_Wood
   m_EditorClassIdentifier: 
-  clipVolume: 0.4
-  pitchVariance: 0.2
+  clipVolume: 0.03
+  pitchVariance: 0.1
   clips:
   - {fileID: 8300000, guid: a8ca22a897c30404eaf894fd4710ad74, type: 3}
   - {fileID: 8300000, guid: 581dc97ff9b682a4da32ad18852858f6, type: 3}

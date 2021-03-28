@@ -12,6 +12,8 @@ public class PlayerMotor : BaseMotor {
 	// Component references:
 	public Transform CameraTransform { set; get; }
 	private InputBuffer inputBuffer;
+
+	public bool IsMoving = false;
 	
 	public override void Start() {
 		base.Start();
@@ -97,6 +99,12 @@ public class PlayerMotor : BaseMotor {
 		// Store velocity for next frame
 		LastDirection = new Vector3(MoveVector.x, 0, MoveVector.z);
 		HorizontalVelocity = LastDirection.magnitude;
+
+		if (HorizontalVelocity > Mathf.Epsilon) {
+			IsMoving = true;
+		} else {
+			IsMoving = false;
+		}
 	}
 
 	public Vector3 CreateInputVector(Vector2 input) {
