@@ -8,6 +8,7 @@ public class intr_Door : InteractableObject
     [SerializeField] protected GameObject doorObject;
 
     [SerializeField] protected Vector3 openRotation;
+    [SerializeField] protected Quaternion startRotation;
 
     protected bool open = false;
     [SerializeField] protected bool locked = false;
@@ -17,6 +18,7 @@ public class intr_Door : InteractableObject
     private void Start()
     {
         EventSystem.current.onLockOpen += LockOpen;
+        startRotation = doorObject.transform.rotation;
     }
 
     public override bool ValidInteractionState { get { return active && !locked; } }
