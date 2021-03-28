@@ -7,7 +7,10 @@ public class UIBillboard : MonoBehaviour
     protected Transform targetCamera;
 
     void Start() {
-        targetCamera = Camera.main.transform;
+        Camera mainCam = Camera.main;
+        if (mainCam != null) {
+            targetCamera = Camera.main.transform;
+        }
     }
 
     void LateUpdate()

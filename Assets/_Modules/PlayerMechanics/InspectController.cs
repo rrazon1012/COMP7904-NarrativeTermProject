@@ -68,6 +68,7 @@ public class InspectController : MonoBehaviour
 
         //enable the canvas to overlay on top of the main camera
         inspectCam.gameObject.SetActive(true);
+        // mainCam.gameObject.SetActive(false);
         InspectorContainer.SetActive(true);
         InspectorLight.SetActive(true);
         
@@ -93,6 +94,12 @@ public class InspectController : MonoBehaviour
         foreach (Transform child in insItem.transform) {
             if (child.name != "InteractionCanvas") {
                 child.gameObject.layer = INSPECTABLE_LAYER;
+
+                foreach(Transform childOfChild in child.transform) {
+                    if (childOfChild.name != "InteractionCanvas") {
+                        childOfChild.gameObject.layer = INSPECTABLE_LAYER;
+                    }
+                }
             }
         }
         item.SetActive(false);
@@ -108,7 +115,7 @@ public class InspectController : MonoBehaviour
 
         //disables canvas overlay
         inspectCam.gameObject.SetActive(false);
-        //mainCam.gameObject.SetActive(true);
+        // mainCam.gameObject.SetActive(true);
         InspectorContainer.SetActive(false);
         InspectorLight.SetActive(false);
         //removes render texture

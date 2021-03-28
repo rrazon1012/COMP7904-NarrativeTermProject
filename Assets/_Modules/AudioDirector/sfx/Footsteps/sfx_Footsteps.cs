@@ -6,7 +6,7 @@ public class sfx_Footsteps : MonoBehaviour
 {
     protected PlayerMotor motor;
     [SerializeField] protected AudioCollection sfx_footsteps;
-    [SerializeField] protected float footstepDelay = 1.5f;
+    [SerializeField] protected float footstepDelay = 0.6f;
     protected float timeToNextFootstep;
     protected IEnumerator footstepCoroutine;
 
@@ -30,6 +30,13 @@ public class sfx_Footsteps : MonoBehaviour
             // Set a short delay for the first footstep.
             timeToNextFootstep = 0.1f;
         }
+
+        // Uncomment this once sprinting flag is accessible.
+        // if (!motor.Sprinting) {
+        //     footstepDelay = 0.6f;
+        // } else {
+        //     footstepDelay = 0.2f;
+        // }
         
     }
 }
