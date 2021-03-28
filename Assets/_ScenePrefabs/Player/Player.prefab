@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2891267976102518293}
   - component: {fileID: 2405977378549657639}
   - component: {fileID: 3562559443177899064}
+  - component: {fileID: 8007289472414557844}
   - component: {fileID: 3779671723090125663}
   - component: {fileID: 3779671723090125662}
   - component: {fileID: 3779671723090125634}
@@ -205,6 +206,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   castTime: 0.8
+  voidSpeed: 20
   targetFocusTime: 0.6
   aimVoidState: {fileID: 11400000, guid: 0238408f0d2727744874215c2d66d69f, type: 2}
   focusRepressState: {fileID: 11400000, guid: cefde9885779e1649a36334bce035bc3, type: 2}
@@ -254,6 +256,18 @@ MonoBehaviour:
   visibleTargets: []
   viewMeshFilter: {fileID: 0}
   meshResolution: 0.1
+--- !u!114 &8007289472414557844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779671723090125637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93580e9131a730f45926395e19f2ad8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3779671723090125663
 MonoBehaviour:
   m_ObjectHideFlags: 0

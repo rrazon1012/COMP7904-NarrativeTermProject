@@ -35,7 +35,7 @@ public class vfx_MirrorAngle : MonoBehaviour
         camToPlayer.y = 0;
 
         // 2. Get the vector representing the mirror's forward facing direction.
-        Vector3 forward = -transform.TransformDirection(this.transform.forward) * 2;
+        Vector3 forward = this.transform.forward * 2;
         forward.y = 0;
         
         // 3. Find the opposing angle between those two vectors, clamped bewteen the max viewing angle.

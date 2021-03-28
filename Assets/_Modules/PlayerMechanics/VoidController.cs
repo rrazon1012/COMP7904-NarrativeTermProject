@@ -74,7 +74,6 @@ public class VoidController : MonoBehaviour
             
             // Set the VoidSphere's position to the intersection.
             Debug.DrawRay(transform.position, mainCamera.transform.forward * hit.distance, Color.yellow);
-            VoidSphere.Instance.transform.position = hit.point;
             targetSphere.transform.position = hit.point;
 
         } else {
@@ -89,6 +88,7 @@ public class VoidController : MonoBehaviour
     }
 
     public void Reveal() {
+        VoidSphere.Instance.transform.position = targetSphere.transform.position;
         targetSphere.transform.position = new Vector3(0, -100, 0);
 
         if (voidActive) {
