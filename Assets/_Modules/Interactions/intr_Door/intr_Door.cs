@@ -8,7 +8,6 @@ public class intr_Door : InteractableObject
     [SerializeField] protected GameObject doorObject;
 
     [SerializeField] protected Vector3 openRotation;
-    [SerializeField] protected Quaternion startRotation;
 
     protected bool open = false;
     [SerializeField] protected bool locked = false;
@@ -18,7 +17,6 @@ public class intr_Door : InteractableObject
     private void Start()
     {
         EventSystem.current.onLockOpen += LockOpen;
-        startRotation = doorObject.transform.rotation;
     }
 
     public override bool ValidInteractionState { get { return active && !locked; } }
@@ -34,13 +32,13 @@ public class intr_Door : InteractableObject
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.red);
 
                     UpdateInteractionName("Close Door");
-                    doorObject.transform.rotation = Quaternion.Euler(openRotation);
+                    doorObject.transform.rotation *= Quaternion.Euler(openRotation);
 
                 } else {
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
 
                     UpdateInteractionName("Open Door");
-                    doorObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+                    doorObject.transform.rotation *= Quaternion.Euler(-openRotation);
                 }
 
                 open = !open;
