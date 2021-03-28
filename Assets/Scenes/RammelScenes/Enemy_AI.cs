@@ -52,7 +52,7 @@ public class Enemy_AI : MonoBehaviour
     void Update()
     {
         isActive = voidToggledEnemy.IsRevealed;
-
+        
         //will only chase player if they have been seen and if it has been revealed
         if (isChasing && isActive)
         {
@@ -78,10 +78,9 @@ public class Enemy_AI : MonoBehaviour
                     agent.destination = player.transform.position;
                     isChasing = true;
                 }
-
             }
             //player is nowhere to be seen, go looking for player, unless player has just been seen
-            if (!agent.pathPending && agent.remainingDistance < 0.5f && !isChasing)
+            if (!agent.pathPending && agent.remainingDistance < 1.0f && !isChasing)
             {
                 GotoNextPoint();
             }

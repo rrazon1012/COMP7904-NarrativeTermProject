@@ -6,16 +6,16 @@ using UnityEngine.InputSystem;
 public class InspectController : MonoBehaviour
 {
     const int INSPECTABLE_LAYER = 13;
-    const float inspectTurnSpeed = 1.0f;
+    const float inspectTurnSpeed = 0.15f;
     private PlayerInput inputcomp;
     private InputBuffer inputBuffer;
     private float xRotation = 0.0f;
-
 
     [SerializeField] public GameObject InspectorContainer;
     [SerializeField] public GameObject InspectorLight;
     [SerializeField] private PlayerInputActions controls;
     [SerializeField] protected Camera mainCam;
+    [SerializeField] protected Camera inspectCam;
     [SerializeField] protected RenderTexture mainCamTex;
     [SerializeField] protected GameObject Inspector;
 
@@ -57,15 +57,8 @@ public class InspectController : MonoBehaviour
     {
         Vector2 axis = inputBuffer.GetInspectAxis();
 
-        float lookX = axis.x * inspectTurnSpeed * Mathf.Deg2Rad;
-        float lookY = axis.y * inspectTurnSpeed * Mathf.Deg2Rad;
-
-        InspectorContainer.transform.Rotate(Vector3.up,-lookX);
-        InspectorContainer.transform.Rotate(Vector3.right,lookY);
-
-        //Vector2 scroll = inputBuffer.GetScrollZoom();
-        //if scroll.y is -120 = downward , scrolly is +120 = upward
-        //Debug.Log(scroll.y);
+        InspectorContainer.transform.Rotate(axis.y * inspectTurnSpeed, 0.0f, 0.0f,Space.Self);
+        InspectorContainer.transform.Rotate(0.0f, -axis.x * inspectTurnSpeed, 0.0f, Space.World);
     }
 
     public void InitiateInspect(GameObject item) {
@@ -74,6 +67,9 @@ public class InspectController : MonoBehaviour
         isInspecting = true;
 
         //enable the canvas to overlay on top of the main camera
+        inspectCam.gameObject.SetActive(true);
+        //mainCam.gameObject.SetActive(false);
+
         Inspector.SetActive(true);
         InspectorContainer.SetActive(true);
         InspectorLight.SetActive(true);
@@ -96,10 +92,12 @@ public class InspectController : MonoBehaviour
         insItem.transform.localPosition = Vector3.zero;
         insItem.transform.localRotation = Quaternion.identity;
 
-        //insItem.layer = INSPECTABLE_LAYER;
-        //foreach (Transform child in insItem.transform) {
-        //    child.gameObject.layer = INSPECTABLE_LAYER;
-        //}
+        insItem.layer = INSPECTABLE_LAYER;
+        foreach (Transform child in insItem.transform) {
+            if (child.name != "InteractionCanvas") {
+                child.gameObject.layer = INSPECTABLE_LAYER;
+            }
+        }
         item.SetActive(false);
         itemRef = item;
     }
@@ -112,6 +110,8 @@ public class InspectController : MonoBehaviour
         InspectorContainer.transform.localRotation = Quaternion.identity;
 
         //disables canvas overlay
+        inspectCam.gameObject.SetActive(false);
+        //mainCam.gameObject.SetActive(true);
         Inspector.SetActive(false);
         InspectorContainer.SetActive(false);
         InspectorLight.SetActive(false);

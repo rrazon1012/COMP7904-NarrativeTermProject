@@ -23,6 +23,9 @@ public class VoidToggledEnemy : MonoBehaviour
     [SerializeField] protected Material hidden;
     [SerializeField] protected VoidController voidController;
     private IEnumerator closingRoutine;
+
+    private bool initialRadius;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,8 @@ public class VoidToggledEnemy : MonoBehaviour
         voidCollider.isTrigger = true;
         objectList = new List<GameObject>();
         objectList.Add(this.gameObject);
+        initialRadius = false;
+
         foreach (Transform child in this.transform)
         {
             objectList.Add(child.gameObject);
@@ -47,7 +52,8 @@ public class VoidToggledEnemy : MonoBehaviour
                     this.GetComponent<Collider>().isTrigger = true;
                     this.GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
                     this.GetComponent<NavMeshAgent>().ResetPath();
-
+                    //this.GetComponent<NavMeshAgent>().radius = 0.0001f;
+                    //Physics.IgnoreCollision(voidCollider,GameManager.GM.player.GetComponent<Collider>());
                     foreach (GameObject obj in objectList)
                     {
                         voidController.isClosing = false;
@@ -63,7 +69,14 @@ public class VoidToggledEnemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(closingRoutine != null);
+        //check if the navmesh is now on the surface, if so set the radius to a really small number
+        if (!initialRadius) {
+            if (this.GetComponent<NavMeshAgent>().hasPath) {
+                //this.GetComponent<NavMeshAgent>().radius = 0.0001f;
+                initialRadius = true;
+            }
+        }
+
         //Debug.Log("Is Closing " + voidController.isClosing + " In Collider " + VoidSphere.Instance.ObjectFullyWithinCollision(voidCollider, (voidCollider as CapsuleCollider).radius));
         // A Dark-Object is hidden the majority of the time, so we check the exception: the case where the void is active and it may be revealed.
         if (VoidSphere.Instance.Active && VoidSphere.Instance.ObjectJustOnEdgeCollision(voidCollider))
@@ -74,6 +87,8 @@ public class VoidToggledEnemy : MonoBehaviour
                 this.GetComponent<Renderer>().material = revealed;
                 this.GetComponent<Collider>().isTrigger = false;
                 this.GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+                this.GetComponent<NavMeshAgent>().radius = 0.5f;
+
                 foreach (GameObject obj in objectList)
                 {
                     obj.GetComponent<MeshRenderer>().material = revealed;
@@ -89,5 +104,4 @@ public class VoidToggledEnemy : MonoBehaviour
             }
         }
     }
-    
 }
