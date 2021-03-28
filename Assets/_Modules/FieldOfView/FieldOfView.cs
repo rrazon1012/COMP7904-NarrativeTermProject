@@ -152,6 +152,7 @@ public class FieldOfView : MonoBehaviour
 
     public bool WithinAngle(Vector3 targetPosition, Vector3 angleDirection, float angleInDegrees = 0f, float colliderRadius = 0f) {
         Vector3 dirToTarget = (targetPosition - transform.position).normalized;
+        dirToTarget.y = 0;
 
         // If not angle is provided, default to the viewing angle.
         if (angleInDegrees <= 0) {

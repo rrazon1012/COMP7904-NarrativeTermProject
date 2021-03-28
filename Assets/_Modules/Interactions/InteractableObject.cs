@@ -8,7 +8,7 @@ using TMPro;
 [RequireComponent(typeof(MeshCollider))]
 public abstract class InteractableObject : MonoBehaviour {
     public static float INTERACTION_RANGE = 4f;
-    public static float INTERACTION_ANGLE = 180f;
+    public static float INTERACTION_ANGLE = 360f;
     protected FieldOfView fov;
     protected Canvas promptCanvas;
     protected TextMeshProUGUI interactionText;
@@ -22,6 +22,7 @@ public abstract class InteractableObject : MonoBehaviour {
     [SerializeField] protected AudioCollection[] interactionAudio = null;
     [SerializeField] protected AudioCollection[] interactionFailedAudio = null;
     [SerializeField] protected bool active = false;
+    public virtual bool ValidInteractionState { get { return active; } }
     
     // Start is called before the first frame update
     void Awake() {
@@ -47,13 +48,14 @@ public abstract class InteractableObject : MonoBehaviour {
 
     // If an actor enters the interaction range, add this interactable to their interaction list.
     public void UpdateInteraction() {
-        fov.FindVisibleTargets();
+        List<Transform> nearbyTargets = fov.FindNearbyTargets(INTERACTION_RANGE, fov.TargetMask);
+        // fov.FindVisibleTargets();
 
-        if ((fov.VisibleTargets.Count > 0)) {
+        if ((nearbyTargets.Count > 0)) {
             // active = true;
             
             int targets = 0;
-            foreach (Transform target in fov.VisibleTargets) {
+            foreach (Transform target in nearbyTargets) {
                 if (directional && fov.SourceWithinAngle(target.transform.position, this.transform.position, target.transform.forward, INTERACTION_ANGLE)) {
                     targets++;
                 } else if (!directional) {
@@ -69,7 +71,7 @@ public abstract class InteractableObject : MonoBehaviour {
                 promptCanvas.gameObject.SetActive(false);
             }
             
-        } else if (!(fov.VisibleTargets.Count > 0)) {
+        } else if (!(nearbyTargets.Count > 0)) {
 
             promptCanvas.gameObject.SetActive(false);
             active = false;

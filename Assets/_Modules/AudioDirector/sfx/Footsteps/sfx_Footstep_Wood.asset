@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ba5ef85ceaff143aca947bded8d05e, type: 3}
+  m_Name: sfx_Footstep_Wood
+  m_EditorClassIdentifier: 
+  clipVolume: 0.4
+  pitchVariance: 0.2
+  clips:
+  - {fileID: 8300000, guid: a8ca22a897c30404eaf894fd4710ad74, type: 3}
+  - {fileID: 8300000, guid: 581dc97ff9b682a4da32ad18852858f6, type: 3}
+  - {fileID: 8300000, guid: 62dda3b9f2676cb45a40a63d72f25568, type: 3}
+  - {fileID: 8300000, guid: bcf68cc66755cf14f8d0643f017632d9, type: 3}
+  - {fileID: 8300000, guid: ea01dc9279bd5f64db364006f1b0b67f, type: 3}

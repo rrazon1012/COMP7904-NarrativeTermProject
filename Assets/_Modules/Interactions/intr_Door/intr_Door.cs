@@ -19,9 +19,11 @@ public class intr_Door : InteractableObject
         EventSystem.current.onLockOpen += LockOpen;
     }
 
+    public override bool ValidInteractionState { get { return active && !locked; } }
+
     public override void OnInteraction(InteractionManager interactor) {
 
-        if (active) {
+        if (ValidInteractionState) {
             base.OnInteraction(interactor);
         
             Debug.Log(interactor.name + " is interacting with " + this.name);
