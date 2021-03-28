@@ -20,6 +20,11 @@ public class VoidSphere : MonoBehaviour {
     }
 
     protected ColliderContainer collisionManager;
+    protected AudioSource audioSource;
+
+    // Particle emitter and shape modules
+    protected ParticleSystem particles;
+    protected ParticleSystem.ShapeModule particleShape;
 
     public bool ObjectJustOnEdgeCollision(Collider collision) {
         List<Collider> activeCollisions = collisionManager.GetAllColliders;
@@ -31,7 +36,7 @@ public class VoidSphere : MonoBehaviour {
 
         // Check what kind of collider we're working with.
         
-        if (distanceToObject.magnitude < (voidRadius - (colliderRadius*0.5f))) {
+        if (distanceToObject.magnitude < (voidRadius - (colliderRadius * 0.5f))) {
             return true;
         }
         return false;
@@ -51,6 +56,9 @@ public class VoidSphere : MonoBehaviour {
     void Awake() {
         _instance = this;
         collisionManager = this.GetComponent<ColliderContainer>();
+        audioSource = this.GetComponent<AudioSource>();
+        particles = this.GetComponentInChildren<ParticleSystem>();
+        particleShape = particles.shape;
     }
 
     void Start() {
@@ -61,14 +69,33 @@ public class VoidSphere : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         this.transform.localScale = new Vector3(VoidScale, VoidScale, VoidScale);
 
         UpdateGlobalShaderProperties();
+        UpdateParticleEmission();
+
+        if (Active) {
+            audioSource.volume = 0.2f;
+        } else {
+            audioSource.volume = 0.0f;
+        }
     }
 
     protected void UpdateGlobalShaderProperties() {
         Shader.SetGlobalVector("_Position", transform.position);
         Shader.SetGlobalFloat("_SphereRadius", transform.localScale.x/2);
+    }
+
+    protected void UpdateParticleEmission() {
+        ParticleSystem.EmissionModule emission = particles.emission;
+
+        if (Active) {
+            emission.rateOverTime = 120;
+        } else {
+            emission.rateOverTime = 0;
+        }
+
+        particleShape.radius = voidRadius;
     }
 }

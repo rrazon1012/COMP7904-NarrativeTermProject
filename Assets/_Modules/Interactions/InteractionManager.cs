@@ -49,10 +49,20 @@ public class InteractionManager : MonoBehaviour
 
             // 2. Check if any interactables are near.
             if (nearbyInteractables.Count > 0) {
+                
+                // Remove invalid interactions from the list before resolving the list
+                for (int i = nearbyInteractables.Count - 1; i >= 0 ; --i) {
+
+                    InteractableObject interactable = nearbyInteractables[i].GetComponent<InteractableObject>();
+                    if (!interactable.ValidInteractionState) {
+                        nearbyInteractables.Remove(interactable.transform);
+                    }
+                }
 
                 // If there's only one interactable, choose it.
-                if (nearbyInteractables.Count >= 1) {
+                if (nearbyInteractables.Count > 0 && nearbyInteractables.Count < 2) {
 
+                    // Loop, finding the first usable interacable in the list.
                     foreach (Transform target in nearbyInteractables) {
 
                         InteractableObject interactable = target.GetComponent<InteractableObject>();
@@ -76,8 +86,41 @@ public class InteractionManager : MonoBehaviour
                         }
                     }
                     // InteractableObject interactable = nearbyInteractables[0].GetComponent<InteractableObject>();
+                } else {
+                    // At this point, we know there are more than one interactable, and they must be sorted by distance.
+                    nearbyInteractables.Sort(delegate(Transform a, Transform b) {
+                            Vector3 distToA = (this.transform.position - a.position);
+                            Vector3 distToB = (this.transform.position - b.position);
+                            
+                            return distToA.magnitude.CompareTo(distToB.magnitude);
+                        }
+                    );
+
+                    foreach (Transform target in nearbyInteractables) {
+
+                        InteractableObject interactable = target.GetComponent<InteractableObject>();
+
+                        if (interactable != null) {
+
+                            if (interactable.Directional ) { // && fov.WithinAngle(interactable.transform.position, this.transform.forward, InteractableObject.INTERACTION_ANGLE)
+
+                                interactable.OnInteraction(this);
+                                Debug.Log("Interacting with " + interactable.name);
+                                return;
+
+                            } else if (!interactable.Directional) {
+
+                                interactable.OnInteraction(this);
+                                Debug.Log("Interacting with " + interactable.name);
+                                return;
+                                
+                            }
+                            
+                        }
+                    }
+
                 }
-                // At this point, we know there are more than one interactable, and they must be sorted by distance.
+                
             } else {
                 Debug.Log("No Nearby Interactions");
             }

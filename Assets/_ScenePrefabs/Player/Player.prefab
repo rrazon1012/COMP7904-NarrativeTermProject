@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2891267976102518293}
   - component: {fileID: 2405977378549657639}
   - component: {fileID: 3562559443177899064}
+  - component: {fileID: 8007289472414557844}
   - component: {fileID: 3779671723090125663}
   - component: {fileID: 3779671723090125662}
   - component: {fileID: 3779671723090125634}
@@ -160,6 +161,7 @@ MonoBehaviour:
   rotationVector: {x: 0, y: 0}
   mousePosition: {x: 0, y: 0}
   mouseAxis: {x: 0, y: 0}
+  inspectAxis: {x: 0, y: 0}
 --- !u!114 &3118109194292411570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +186,9 @@ MonoBehaviour:
   motor: {fileID: 0}
   animator: {fileID: 0}
   voidController: {fileID: 0}
+  inspectController: {fileID: 0}
+  interactionManager: {fileID: 0}
+  lockController: {fileID: 0}
 --- !u!114 &2891267976102518293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,10 +206,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   castTime: 0.8
+  voidSpeed: 20
   targetFocusTime: 0.6
   aimVoidState: {fileID: 11400000, guid: 0238408f0d2727744874215c2d66d69f, type: 2}
   focusRepressState: {fileID: 11400000, guid: cefde9885779e1649a36334bce035bc3, type: 2}
   castingState: {fileID: 11400000, guid: 16dff97dc11807a42852d91021a68fd1, type: 2}
+  sfx_OpenVoid: {fileID: 11400000, guid: 394817f684559de4699b2876eeaeff9d, type: 2}
+  sfx_CloseVoid: {fileID: 11400000, guid: 174e9ce09aead8e4eb2f12b0e8ab15e2, type: 2}
 --- !u!114 &2405977378549657639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +256,18 @@ MonoBehaviour:
   visibleTargets: []
   viewMeshFilter: {fileID: 0}
   meshResolution: 0.1
+--- !u!114 &8007289472414557844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779671723090125637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93580e9131a730f45926395e19f2ad8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3779671723090125663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +285,8 @@ MonoBehaviour:
   terminalVelocity: 152
   slopeThreshold: 55
   friction: 15
-  turnSpeed: 0.02
+  mouseTurnSpeed: 0.1
+  controllerTurnSpeed: 2
   VerticalVelocity: 0
   speedModifier: 0
   turnSpeedModifier: 0
@@ -419,6 +440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3779671724827781783}
   - component: {fileID: 3779671724827781782}
+  - component: {fileID: 1917360624185228707}
   - component: {fileID: 3779671724827781784}
   - component: {fileID: 6489652551322257598}
   m_Layer: 0
@@ -486,6 +508,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1917360624185228707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779671724827781787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42cd8dcae69d178488f5efa28e7c7e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
+  BlockCount: 412
 --- !u!81 &3779671724827781784
 AudioListener:
   m_ObjectHideFlags: 0
@@ -554,6 +590,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &8253438294995234286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061943712184650730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42cd8dcae69d178488f5efa28e7c7e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
+  BlockCount: 412
 --- !u!1001 &4086876314258529670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,5 +664,10 @@ PrefabInstance:
 --- !u!4 &4556861240704186989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3a75718e8473fdb4bab9d935ee9c844c, type: 3}
+  m_PrefabInstance: {fileID: 4086876314258529670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4061943712184650730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 65702495048144492, guid: 3a75718e8473fdb4bab9d935ee9c844c, type: 3}
   m_PrefabInstance: {fileID: 4086876314258529670}
   m_PrefabAsset: {fileID: 0}
