@@ -204,10 +204,11 @@ MonoBehaviour:
   targetSphere: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1843
   castTime: 0.8
-  voidSpeed: 20
+  voidSpeed: 10
   targetFocusTime: 0.6
+  isClosing: 0
   aimVoidState: {fileID: 11400000, guid: 0238408f0d2727744874215c2d66d69f, type: 2}
   focusRepressState: {fileID: 11400000, guid: cefde9885779e1649a36334bce035bc3, type: 2}
   castingState: {fileID: 11400000, guid: 16dff97dc11807a42852d91021a68fd1, type: 2}
@@ -268,6 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93580e9131a730f45926395e19f2ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx_footsteps: {fileID: 11400000, guid: 2e3d0cd1aeca88544b95501238dde5d3, type: 2}
+  footstepDelay: 0.6
 --- !u!114 &3779671723090125663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b261c0d86b7bd479476a4ed97a5881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3.5
+  baseSpeed: 4.5
   baseGravity: 40
   terminalVelocity: 152
   slopeThreshold: 55
@@ -294,6 +297,7 @@ MonoBehaviour:
   lowerModBound: 0.2
   upperModBound: 1.5
   mainCamera: {fileID: 0}
+  IsMoving: 0
 --- !u!143 &3779671723090125662
 CharacterController:
   m_ObjectHideFlags: 0
