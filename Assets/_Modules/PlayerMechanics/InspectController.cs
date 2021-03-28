@@ -9,7 +9,6 @@ public class InspectController : MonoBehaviour
     const float inspectTurnSpeed = 0.15f;
     private PlayerInput inputcomp;
     private InputBuffer inputBuffer;
-    private float xRotation = 0.0f;
 
     [SerializeField] public GameObject InspectorContainer;
     [SerializeField] public GameObject InspectorLight;
@@ -17,7 +16,7 @@ public class InspectController : MonoBehaviour
     [SerializeField] protected Camera mainCam;
     [SerializeField] protected Camera inspectCam;
     [SerializeField] protected RenderTexture mainCamTex;
-    [SerializeField] protected GameObject Inspector;
+    private Quaternion initialRotation;
 
     private GameObject insItem = null;
     private GameObject itemRef = null;
@@ -51,13 +50,14 @@ public class InspectController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialRotation = InspectorContainer.transform.localRotation;
     }
 
     private void Update()
     {
         Vector2 axis = inputBuffer.GetInspectAxis();
 
-        InspectorContainer.transform.Rotate(axis.y * inspectTurnSpeed, 0.0f, 0.0f,Space.Self);
+        InspectorContainer.transform.Rotate(-axis.y * inspectTurnSpeed, 0.0f, 0.0f,Space.Self);
         InspectorContainer.transform.Rotate(0.0f, -axis.x * inspectTurnSpeed, 0.0f, Space.World);
     }
 
@@ -68,9 +68,6 @@ public class InspectController : MonoBehaviour
 
         //enable the canvas to overlay on top of the main camera
         inspectCam.gameObject.SetActive(true);
-        //mainCam.gameObject.SetActive(false);
-
-        Inspector.SetActive(true);
         InspectorContainer.SetActive(true);
         InspectorLight.SetActive(true);
         
@@ -107,12 +104,11 @@ public class InspectController : MonoBehaviour
         isInspecting = false;
 
         //reset the rotation of the inspector container
-        InspectorContainer.transform.localRotation = Quaternion.identity;
+        InspectorContainer.transform.localRotation = initialRotation;
 
         //disables canvas overlay
         inspectCam.gameObject.SetActive(false);
         //mainCam.gameObject.SetActive(true);
-        Inspector.SetActive(false);
         InspectorContainer.SetActive(false);
         InspectorLight.SetActive(false);
         //removes render texture
@@ -125,7 +121,6 @@ public class InspectController : MonoBehaviour
         inputcomp.actions.FindAction("InspectAxisX").Disable();
         inputcomp.actions.FindAction("InspectAxisY").Disable();
         //reset inspector container rotation
-        xRotation = 0.0f;
         //gets rid of the object in inspector container
         Destroy(insItem);
         itemRef.SetActive(true);
