@@ -59,10 +59,22 @@ public class playerState_Idle : Substate {
             // 2. Manage the state transition.
             frame.StateTransition(playerFrame.lockController.LockState);
         }
+
+        // If the player presses Action 4, sprint.
+        if (playerFrame.inputBuffer.ActionHeld(InputName.Action4) && playerFrame.interactionManager.currentInteraction == null)
+        {
+            Debug.Log("Action 4 Performed. ");
+            playerFrame.motor.isSprinting = true;
+        }
+        else
+        {
+            playerFrame.motor.isSprinting = false;
+        }
     }
     
     public override void OnStateExit(StateFrame frame) {
-
+        PlayerStateFrame playerFrame = frame as PlayerStateFrame;
+        playerFrame.motor.isSprinting = false;
     }
 
 }
