@@ -77,6 +77,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   destPoint: 0
   fov: {fileID: 1930267686113724448}
   losTimer: 0
@@ -124,7 +128,7 @@ MonoBehaviour:
     m_Bits: 2048
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 30487
+    m_Bits: 30483
   visibleTargets: []
   viewMeshFilter: {fileID: 0}
   meshResolution: 0.1

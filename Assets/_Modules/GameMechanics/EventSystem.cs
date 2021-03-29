@@ -58,4 +58,10 @@ public class EventSystem : MonoBehaviour
     {
         onPlayerCaughtTrigger?.Invoke();
     }
+    
+    public event Action onSpawnEnemy;
+    public void SpawnEnemy()
+    {
+        onSpawnEnemy?.Invoke();
+    }
 }
