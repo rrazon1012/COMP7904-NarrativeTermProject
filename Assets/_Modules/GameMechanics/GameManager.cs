@@ -97,6 +97,9 @@ public class GameManager : MonoBehaviour
 
     private void OnRestrainOrderCheck()
     {
+        VoidController controller = player.GetComponent<VoidController>();
+        controller.Repress();
+        controller.Reveal(lockedWall);
         lockedWall.SetActive(false);
     }
 

@@ -8,6 +8,7 @@ public class intr_RetrainOrder : InteractableObject
     [SerializeField]
     public GameObject main_Cam;
     protected bool colorSwapped = false;
+    protected bool checkedRO = false;
 
     void FixedUpdate()
     {
@@ -21,7 +22,11 @@ public class intr_RetrainOrder : InteractableObject
             Debug.Log("Inspect");
             base.OnInteraction(interactor);
             interactor.currentInteraction = this;
-            EventSystem.current.RestrainOrderCheck();
+            if (!checkedRO)
+            {
+                EventSystem.current.RestrainOrderCheck();
+                checkedRO = true;
+            }
         }
     }
 }
