@@ -16,6 +16,8 @@ public class InteractionManager : MonoBehaviour
 
     protected FieldOfView fov;
 
+    public intr_Book rayHit = null;
+
     // Start is called before the first frame update
     void Start() {
         fov = this.GetComponent<FieldOfView>();
@@ -23,7 +25,43 @@ public class InteractionManager : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate() {
-        
+
+        intr_Book raycastInteractable;
+        RaycastHit HitInfo = new RaycastHit();
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out HitInfo, 15.0f))
+        {
+            //check if collider hit has book interaction script
+            raycastInteractable = HitInfo.collider.gameObject.GetComponent<intr_Book>();
+
+            //if there is
+            if (raycastInteractable != null)
+            {
+                //check if there is a rayhit
+                if (rayHit != null)
+                {
+                    //there is a rayhit, check if the same one is being hit, if it isn't disable the old one and enable the new one then assign the reference to the new one
+                    if (!string.Equals(rayHit.gameObject.name, raycastInteractable.gameObject.name))
+                    {
+                        raycastInteractable.enableCanvas();
+                        rayHit.disableCanvas();
+                        rayHit = raycastInteractable;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Looking at same object");
+                    raycastInteractable.enableCanvas();
+                    rayHit = raycastInteractable;
+                }
+            }
+        }
+        else {
+            if (rayHit != null) {
+                rayHit.disableCanvas();
+                rayHit = null;
+            }
+        }
     }
 
     void OnInteract() {
@@ -60,7 +98,7 @@ public class InteractionManager : MonoBehaviour
                 }
 
                 // If there's only one interactable, choose it.
-                if (nearbyInteractables.Count > 0 && nearbyInteractables.Count < 2) {
+                if (nearbyInteractables.Count == 1) {
 
                     // Loop, finding the first usable interacable in the list.
                     foreach (Transform target in nearbyInteractables) {
@@ -87,35 +125,55 @@ public class InteractionManager : MonoBehaviour
                     }
                     // InteractableObject interactable = nearbyInteractables[0].GetComponent<InteractableObject>();
                 } else {
-                    // At this point, we know there are more than one interactable, and they must be sorted by distance.
-                    nearbyInteractables.Sort(delegate(Transform a, Transform b) {
+                    InteractableObject raycastInteractable;
+
+                    RaycastHit HitInfo = new RaycastHit();
+                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out HitInfo, 15.0f))
+                    {
+                        raycastInteractable = HitInfo.collider.gameObject.GetComponent<InteractableObject>();
+                        if (raycastInteractable != null)
+                        {
+                            raycastInteractable.OnInteraction(this);
+                        }
+                    }
+                    else
+                    {
+                        // At this point, we know there are more than one interactable, and they must be sorted by distance.
+                        nearbyInteractables.Sort(delegate (Transform a, Transform b)
+                        {
                             Vector3 distToA = (this.transform.position - a.position);
                             Vector3 distToB = (this.transform.position - b.position);
-                            
+
                             return distToA.magnitude.CompareTo(distToB.magnitude);
                         }
-                    );
+                        );
 
-                    foreach (Transform target in nearbyInteractables) {
+                        foreach (Transform target in nearbyInteractables)
+                        {
 
-                        InteractableObject interactable = target.GetComponent<InteractableObject>();
+                            InteractableObject interactable = target.GetComponent<InteractableObject>();
 
-                        if (interactable != null) {
+                            if (interactable != null)
+                            {
 
-                            if (interactable.Directional ) { // && fov.WithinAngle(interactable.transform.position, this.transform.forward, InteractableObject.INTERACTION_ANGLE)
+                                if (interactable.Directional)
+                                { // && fov.WithinAngle(interactable.transform.position, this.transform.forward, InteractableObject.INTERACTION_ANGLE)
 
-                                interactable.OnInteraction(this);
-                                Debug.Log("Interacting with " + interactable.name);
-                                return;
+                                    interactable.OnInteraction(this);
+                                    Debug.Log("Interacting with " + interactable.name);
+                                    return;
 
-                            } else if (!interactable.Directional) {
+                                }
+                                else if (!interactable.Directional)
+                                {
 
-                                interactable.OnInteraction(this);
-                                Debug.Log("Interacting with " + interactable.name);
-                                return;
-                                
+                                    interactable.OnInteraction(this);
+                                    Debug.Log("Interacting with " + interactable.name);
+                                    return;
+
+                                }
+
                             }
-                            
                         }
                     }
 
