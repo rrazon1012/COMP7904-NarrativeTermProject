@@ -53,4 +53,9 @@ public class EventSystem : MonoBehaviour
     {
         onKeyEnterTrigger?.Invoke();
     }
+    public event Action onPlayerCaughtTrigger;
+    public void PlayerCaughtTrigger()
+    {
+        onPlayerCaughtTrigger?.Invoke();
+    }
 }

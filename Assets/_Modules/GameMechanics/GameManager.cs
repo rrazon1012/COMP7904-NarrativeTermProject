@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
     public GameObject player;
+    public GameObject playerSpawn;
+    public GameObject enemy;
+    public GameObject enemySpawn;
     public CanvasGroup endScreen;
+    public CanvasGroup deathScreen;
     //public GameObject pauseScreen;
     public GameObject door;
     public GameObject key;
@@ -16,6 +21,8 @@ public class GameManager : MonoBehaviour
     private bool endEntered = false;
 
     private const float END_ANIM_DUR = 5f;
+
+    private const float DEATH_ANIM_DUR = 2.0F;
     private void Awake()
     {
         if (GM == null)
@@ -36,6 +43,7 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onObjectRangeExit += OnObjectRangeExit;
         EventSystem.current.onPlayerDeath += OnPlayerDeath;
         EventSystem.current.onKeyEnterTrigger += OnKeyEnterTrigger;
+        EventSystem.current.onPlayerCaughtTrigger += OnPlayerCaughtTrigger;
     }
 
     private void OnPlayerRangeEnter()
@@ -66,6 +74,23 @@ public class GameManager : MonoBehaviour
     private void OnPlayerDeath()
     {
         Debug.Log("I die");
+    }
+    private void OnPlayerCaughtTrigger()
+    {
+        player.transform.position = playerSpawn.transform.position;
+        player.transform.rotation = Quaternion.identity;
+        player.transform.GetComponent<NavMeshAgent>().Warp(playerSpawn.transform.position);
+
+        enemy.transform.GetComponent<NavMeshAgent>().Warp(enemySpawn.transform.position);
+        enemy.GetComponent<Enemy_AI>().Reset();
+        enemy.GetComponent<VoidToggledEnemy>().Reset();
+
+        StartCoroutine(UIFade.FadeCanvas(deathScreen, 1f, 1f, DEATH_ANIM_DUR, 0f));
+        Invoke(nameof(DisableCharacterMovement), 0f);
+
+        StartCoroutine(UIFade.FadeCanvas(deathScreen, 1f, 0f, 1f, DEATH_ANIM_DUR));
+        Invoke(nameof(EnableCharacterMovement), DEATH_ANIM_DUR);
+
     }
 
     private void EnableCharacterMovement()
