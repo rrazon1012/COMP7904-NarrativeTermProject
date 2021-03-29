@@ -64,4 +64,9 @@ public class EventSystem : MonoBehaviour
     {
         onSpawnEnemy?.Invoke();
     }
+    public event Action onPlayerInteractEnd;
+    public void OnPlayerInteractEnd()
+    {
+        onPlayerInteractEnd?.Invoke();
+    }
 }
