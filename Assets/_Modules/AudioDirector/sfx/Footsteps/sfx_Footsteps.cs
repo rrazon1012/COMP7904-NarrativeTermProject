@@ -31,12 +31,11 @@ public class sfx_Footsteps : MonoBehaviour
             timeToNextFootstep = 0.1f;
         }
 
-        // Uncomment this once sprinting flag is accessible.
-        // if (!motor.Sprinting) {
-        //     footstepDelay = 0.6f;
-        // } else {
-        //     footstepDelay = 0.2f;
-        // }
+        if (!motor.isSprinting) {
+            footstepDelay = 0.6f;
+        } else {
+            footstepDelay = 0.2f;
+        }
         
     }
 }

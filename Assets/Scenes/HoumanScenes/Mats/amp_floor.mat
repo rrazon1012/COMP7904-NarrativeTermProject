@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: amp_bedroom_floor
+  m_Name: amp_floor
   m_Shader: {fileID: 4800000, guid: 90a6dbf7312d0244196da1098ba3a78c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -40,7 +40,7 @@ Material:
     - _EdgeWidth: 0.03
     - __dirty: 0
     m_Colors:
-    - _DarkColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _DarkColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
     - _EdgeColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   m_BuildTextureStacks: []
