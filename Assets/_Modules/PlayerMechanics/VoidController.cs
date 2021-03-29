@@ -114,9 +114,9 @@ public class VoidController : MonoBehaviour
         StartCoroutine(voidAdjustmentCoroutine);
     }
 
-    public void Reveal(GameObject other)
+    public void Reveal(GameObject other, Vector3 offset)
     {
-        VoidSphere.Instance.transform.position = other.transform.position + new Vector3(0f, 0f, 3f);
+        VoidSphere.Instance.transform.position = other.transform.position + offset;
         targetSphere.transform.position = new Vector3(0, -100, 0);
 
         if (voidActive)

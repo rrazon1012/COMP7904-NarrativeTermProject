@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     {
         VoidController controller = player.GetComponent<VoidController>();
         controller.Repress();
-        controller.Reveal(lockedWall);
+        controller.Reveal(lockedWall, new Vector3(0f, 0f, 3f));//Use Vector3.zero if no offset
         lockedWall.SetActive(false);
     }
 
