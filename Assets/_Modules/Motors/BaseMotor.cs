@@ -36,6 +36,15 @@ public class BaseMotor : MonoBehaviour {
 	// Motor overrides:
 	public bool active = true;
 	protected bool movementLocked;
+
+	//Sprinting variables
+	public bool isSprinting = false;
+	public bool noStamina = false;
+	public float stamina;
+	[SerializeField] protected float maxStamina;
+	public float restTimer;
+	[SerializeField] protected float maxTimer;
+
 	public void SetMovementLock(bool newVal) { movementLocked = newVal; }
 	protected bool rotationLocked;
 	public void SetRotationLock(bool newVal) { rotationLocked = newVal; }
@@ -86,6 +95,7 @@ public class BaseMotor : MonoBehaviour {
 		turnSpeedModifier = 1f;
 		gravityModifier = 1f;
 		speedModifier = 1f;
+		stamina = maxStamina;
 	}
 	#endregion
 

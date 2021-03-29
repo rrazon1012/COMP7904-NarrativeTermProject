@@ -12,6 +12,8 @@ public class PlayerMotor : BaseMotor {
 	// Component references:
 	public Transform CameraTransform { set; get; }
 	private InputBuffer inputBuffer;
+
+	public bool IsMoving = false;
 	
 	public override void Start() {
 		base.Start();
@@ -84,6 +86,7 @@ public class PlayerMotor : BaseMotor {
 
 		// Move the controller
 		if (!movementLocked) {
+			Sprint();
 			Move();
 		}
 		
@@ -97,6 +100,12 @@ public class PlayerMotor : BaseMotor {
 		// Store velocity for next frame
 		LastDirection = new Vector3(MoveVector.x, 0, MoveVector.z);
 		HorizontalVelocity = LastDirection.magnitude;
+
+		if (HorizontalVelocity > Mathf.Epsilon) {
+			IsMoving = true;
+		} else {
+			IsMoving = false;
+		}
 	}
 
 	public Vector3 CreateInputVector(Vector2 input) {
@@ -198,6 +207,38 @@ public class PlayerMotor : BaseMotor {
 		// Influence Air Velocity function not written currently
 		return input;
 	}
+
+	public void Sprint()
+    {
+		if(isSprinting && !noStamina)
+        {
+			baseSpeed = 8;
+			if (stamina > 0)
+            {
+				stamina -= 1 * Time.deltaTime;
+			}
+			else
+            {
+				noStamina = true;
+			}
+			restTimer = maxTimer;
+		}
+		else
+        {
+			baseSpeed = 4.5f;
+			if (noStamina || restTimer > 0)
+            {
+				restTimer -= 1 * Time.deltaTime;
+			}
+
+			if (stamina < maxStamina && restTimer <= 0)
+            {
+				stamina += 1 * Time.deltaTime;
+				if (stamina == maxStamina)
+					noStamina = false;
+			}
+		}
+    }
 
 	private void OnTriggerEnter(Collider col)
 	{

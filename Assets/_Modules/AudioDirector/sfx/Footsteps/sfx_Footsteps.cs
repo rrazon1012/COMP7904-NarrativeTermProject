@@ -6,7 +6,7 @@ public class sfx_Footsteps : MonoBehaviour
 {
     protected PlayerMotor motor;
     [SerializeField] protected AudioCollection sfx_footsteps;
-    [SerializeField] protected float footstepDelay = 1.5f;
+    [SerializeField] protected float footstepDelay = 0.6f;
     protected float timeToNextFootstep;
     protected IEnumerator footstepCoroutine;
 
@@ -18,6 +18,25 @@ public class sfx_Footsteps : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate() {
+        // Count down the timer when the player is moving. Moving is set based on motor's Horizontal Velocity.
+        if (motor.IsMoving) {
+            timeToNextFootstep -= Time.fixedDeltaTime;
+
+            if (timeToNextFootstep <= 0) {
+                AudioDirector.Instance.PlayRandomAudioAtPoint(sfx_footsteps, this.transform.position);
+                timeToNextFootstep = footstepDelay;
+            }
+        } else {
+            // Set a short delay for the first footstep.
+            timeToNextFootstep = 0.1f;
+        }
+
+        // Uncomment this once sprinting flag is accessible.
+        // if (!motor.Sprinting) {
+        //     footstepDelay = 0.6f;
+        // } else {
+        //     footstepDelay = 0.2f;
+        // }
         
     }
 }
