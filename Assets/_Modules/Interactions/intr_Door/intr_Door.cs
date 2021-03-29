@@ -30,19 +30,12 @@ public class intr_Door : InteractableObject
             if (!locked) {
                 if (!open) {
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-
-                    UpdateInteractionName("Close Door");
-                    doorObject.transform.rotation *= Quaternion.Euler(openRotation);
+                    OpenDoor();
 
                 } else {
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
-
-                    UpdateInteractionName("Open Door");
-                    doorObject.transform.rotation *= Quaternion.Euler(-openRotation);
+                    CloseDoor();
                 }
-
-                open = !open;
-                PlayInteractionAudio();
             }
         }
         
@@ -58,4 +51,19 @@ public class intr_Door : InteractableObject
         }
     }
 
+    public void OpenDoor()
+    {
+        UpdateInteractionName("Close Door");
+        doorObject.transform.rotation *= Quaternion.Euler(openRotation);
+        open = true;
+        PlayInteractionAudio();
+    }
+
+    public void CloseDoor()
+    {
+        UpdateInteractionName("Open Door");
+        doorObject.transform.rotation *= Quaternion.Euler(-openRotation);
+        open = false;
+        PlayInteractionAudio();
+    }
 }
