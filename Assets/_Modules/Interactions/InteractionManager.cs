@@ -125,19 +125,22 @@ public class InteractionManager : MonoBehaviour
                     }
                     // InteractableObject interactable = nearbyInteractables[0].GetComponent<InteractableObject>();
                 } else {
-                    InteractableObject raycastInteractable;
+                    InteractableObject raycastInteractable = null;
 
+                    //do a raycast for interactable objects
                     RaycastHit HitInfo = new RaycastHit();
-                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out HitInfo, 15.0f))
-                    {
+                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out HitInfo, 15.0f)) {
                         raycastInteractable = HitInfo.collider.gameObject.GetComponent<InteractableObject>();
-                        if (raycastInteractable != null)
-                        {
+                    }
+
+                    //if the collider hit has an interactable object, then use that for interaction
+                    if (raycastInteractable != null)
+                    {
                             raycastInteractable.OnInteraction(this);
-                        }
                     }
                     else
                     {
+                        //the collider hit didn't have an interactable object so get the closes interactable instead
                         // At this point, we know there are more than one interactable, and they must be sorted by distance.
                         nearbyInteractables.Sort(delegate (Transform a, Transform b)
                         {
