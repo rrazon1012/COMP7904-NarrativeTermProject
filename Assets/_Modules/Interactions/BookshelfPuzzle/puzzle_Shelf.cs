@@ -40,6 +40,7 @@ public class puzzle_Shelf : MonoBehaviour
                 {
                     if (!string.Equals(solOrder[i].gameObject.name, pullOrder[i].gameObject.name))
                     {
+                        Debug.Log("false");
                         matches = false;
                     }
                 }
