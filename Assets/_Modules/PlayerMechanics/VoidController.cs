@@ -14,6 +14,8 @@ public class VoidController : MonoBehaviour
 
     [SerializeField] protected float castTime = 0.5f;
     [SerializeField] protected float voidSpeed = 20f;
+    [SerializeField] protected float voidSize = 5f;
+
     public float CastTime { get { return castTime; } }
 
     protected bool voidActive = false;
@@ -107,7 +109,7 @@ public class VoidController : MonoBehaviour
         }
 
         // Assign the new coroutine to the shared slot.
-        voidAdjustmentCoroutine = AdjustVoidSize(11f, voidSpeed);
+        voidAdjustmentCoroutine = AdjustVoidSize(voidSize, voidSpeed);
 
         StartCoroutine(voidAdjustmentCoroutine);
     }
