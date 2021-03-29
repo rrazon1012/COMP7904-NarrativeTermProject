@@ -58,4 +58,10 @@ public class EventSystem : MonoBehaviour
     {
         onPlayerCaughtTrigger?.Invoke();
     }
+
+    public event Action onRestrainOrderCheck;
+    public void RestrainOrderCheck()
+    {
+        onRestrainOrderCheck?.Invoke();
+    }
 }
