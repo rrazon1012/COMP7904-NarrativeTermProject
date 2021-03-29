@@ -22,6 +22,7 @@ public class VoidToggledEnemy : MonoBehaviour
     [SerializeField] protected Material revealed;
     [SerializeField] protected Material hidden;
     [SerializeField] protected VoidController voidController;
+    [SerializeField] SkinnedMeshRenderer render_body;
     private IEnumerator closingRoutine;
 
     private bool initialRadius;
@@ -34,11 +35,11 @@ public class VoidToggledEnemy : MonoBehaviour
         objectList = new List<GameObject>();
         objectList.Add(this.gameObject);
         initialRadius = false;
-
-        foreach (Transform child in this.transform)
-        {
-            objectList.Add(child.gameObject);
-        }
+        
+        //foreach (Transform child in this.transform)
+        //{
+        //    objectList.Add(child.gameObject);
+        //}
     }
     IEnumerator closing() {
         //while the void is closing
@@ -48,17 +49,9 @@ public class VoidToggledEnemy : MonoBehaviour
                 if (isRevealed)
                 {
                     isRevealed = false;
-                    this.GetComponent<Renderer>().material = hidden;
-                    this.GetComponent<Collider>().isTrigger = true;
-                    this.GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
                     this.GetComponent<NavMeshAgent>().ResetPath();
-                    //this.GetComponent<NavMeshAgent>().radius = 0.0001f;
-                    //Physics.IgnoreCollision(voidCollider,GameManager.GM.player.GetComponent<Collider>());
-                    foreach (GameObject obj in objectList)
-                    {
-                        voidController.isClosing = false;
-                        obj.GetComponent<MeshRenderer>().material = hidden;
-                    }
+                    render_body.material = hidden;
+                    voidController.isClosing = false;
                 }
             }
             yield return null;
@@ -72,7 +65,6 @@ public class VoidToggledEnemy : MonoBehaviour
         //check if the navmesh is now on the surface, if so set the radius to a really small number
         if (!initialRadius) {
             if (this.GetComponent<NavMeshAgent>().hasPath) {
-                //this.GetComponent<NavMeshAgent>().radius = 0.0001f;
                 initialRadius = true;
             }
         }
@@ -84,15 +76,11 @@ public class VoidToggledEnemy : MonoBehaviour
             if (!isRevealed)
             {
                 isRevealed = true;
-                this.GetComponent<Renderer>().material = revealed;
+                render_body.material = revealed;
                 this.GetComponent<Collider>().isTrigger = false;
                 this.GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
                 this.GetComponent<NavMeshAgent>().radius = 0.5f;
 
-                foreach (GameObject obj in objectList)
-                {
-                    obj.GetComponent<MeshRenderer>().material = revealed;
-                }
             }
         }
         if(voidController.isClosing && VoidSphere.Instance.ObjectJustOnEdgeCollision(voidCollider)){
@@ -103,5 +91,11 @@ public class VoidToggledEnemy : MonoBehaviour
                 StartCoroutine(closingRoutine);
             }
         }
+    }
+    public void Reset()
+    {
+        isRevealed = false;
+        this.GetComponent<NavMeshAgent>().ResetPath();
+        render_body.material = hidden;
     }
 }
