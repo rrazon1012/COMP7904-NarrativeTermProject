@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onPlayerCaughtTrigger += OnPlayerCaughtTrigger;
         EventSystem.current.onRestrainOrderCheck += OnRestrainOrderCheck;
         EventSystem.current.onSpawnEnemy += OnSpawnEnemy;
+        EventSystem.current.onPlayerInteractEnd += OnPlayerInteractEnd;
     }
 
     private void OnPlayerRangeEnter()
@@ -94,6 +95,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UIFade.FadeCanvas(deathScreen, 1f, 0f, 1f, DEATH_ANIM_DUR));
         Invoke(nameof(EnableCharacterMovement), DEATH_ANIM_DUR);
 
+    }
+
+    private void OnPlayerInteractEnd()
+    {
+        //endEntered = true;
+        StartCoroutine(UIFade.FadeCanvas(endScreen, 0f, 1f, END_ANIM_DUR, 0f));
+        Invoke(nameof(DisableCharacterMovement), 0f);
     }
 
     private void OnRestrainOrderCheck()
