@@ -42,14 +42,28 @@ public class playerState_Idle : Substate {
             // 2. Manage the state transition.
             frame.StateTransition(playerFrame.voidController.FocusRepressState);
         }
-        else if (playerFrame.interactionManager.currentInteraction is InspectableObject && !playerFrame.inspectController.IsInspecting)
+        else if (playerFrame.interactionManager.currentInteraction is InspectableObject && !playerFrame.inspectController.IsInspecting || playerFrame.interactionManager.currentInteraction is intr_Book && !playerFrame.inspectController.IsInspecting)
         {
+            if (playerFrame.interactionManager.currentInteraction is intr_Book)
+            {
+                intr_Book interaction = playerFrame.interactionManager.currentInteraction as intr_Book;
+                if (interaction.isPulled)
+                {
+                    // 1. Manage the input.
+                    playerFrame.inputBuffer.PopQueuedInput();
 
-            // 1. Manage the input.
-            playerFrame.inputBuffer.PopQueuedInput();
+                    // 2. Manage the state transition.
+                    frame.StateTransition(playerFrame.inspectController.InitiateInspectState);
+                }
+            }
+            else
+            {
+                // 1. Manage the input.
+                playerFrame.inputBuffer.PopQueuedInput();
 
-            // 2. Manage the state transition.
-            frame.StateTransition(playerFrame.inspectController.InitiateInspectState);
+                // 2. Manage the state transition.
+                frame.StateTransition(playerFrame.inspectController.InitiateInspectState);
+            }
         }
         else if (playerFrame.interactionManager.currentInteraction is intr_Lock && !playerFrame.lockController.IsLock) {
 
