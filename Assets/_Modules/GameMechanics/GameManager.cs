@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onKeyEnterTrigger += OnKeyEnterTrigger;
         EventSystem.current.onPlayerCaughtTrigger += OnPlayerCaughtTrigger;
         EventSystem.current.onRestrainOrderCheck += OnRestrainOrderCheck;
+        EventSystem.current.onSpawnEnemy += OnSpawnEnemy;
     }
 
     private void OnPlayerRangeEnter()
@@ -144,5 +145,10 @@ public class GameManager : MonoBehaviour
 
         key.SetActive(false); //Gameobject.Destroy(key);
         door.GetComponent<intr_Door>().LockOpen();
+    }
+    
+    public void OnSpawnEnemy()
+    {
+        enemy.SetActive(true);
     }
 }
