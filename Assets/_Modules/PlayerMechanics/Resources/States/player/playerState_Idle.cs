@@ -78,7 +78,14 @@ public class playerState_Idle : Substate {
         if (playerFrame.inputBuffer.ActionHeld(InputName.Action4) && playerFrame.interactionManager.currentInteraction == null)
         {
             Debug.Log("Action 4 Performed. ");
-            playerFrame.motor.isSprinting = true;
+            if (!playerFrame.motor.noStamina)
+            {
+                playerFrame.motor.isSprinting = true;
+            }
+            else
+            {
+                playerFrame.motor.isSprinting = false;
+            }
         }
         else
         {
