@@ -42,7 +42,7 @@ public class playerState_Idle : Substate {
             // 2. Manage the state transition.
             frame.StateTransition(playerFrame.voidController.FocusRepressState);
         }
-        else if (playerFrame.interactionManager.currentInteraction is InspectableObject && !playerFrame.inspectController.IsInspecting || playerFrame.interactionManager.currentInteraction is intr_Book && !playerFrame.inspectController.IsInspecting)
+        else if (playerFrame.interactionManager.currentInteraction is InspectableObject && !playerFrame.inspectController.IsInspecting || playerFrame.interactionManager.currentInteraction is intr_Book && !playerFrame.inspectController.IsInspecting || playerFrame.interactionManager.currentInteraction is intr_RetrainOrder && !playerFrame.inspectController.IsInspecting)
         {
             if (playerFrame.interactionManager.currentInteraction is intr_Book)
             {

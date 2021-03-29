@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     //public GameObject pauseScreen;
     public GameObject door;
     public GameObject key;
+    public GameObject lockedWall;
 
     private bool isPaused = false;
     private bool endEntered = false;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onPlayerDeath += OnPlayerDeath;
         EventSystem.current.onKeyEnterTrigger += OnKeyEnterTrigger;
         EventSystem.current.onPlayerCaughtTrigger += OnPlayerCaughtTrigger;
+        EventSystem.current.onRestrainOrderCheck += OnRestrainOrderCheck;
         EventSystem.current.onSpawnEnemy += OnSpawnEnemy;
     }
 
@@ -92,6 +94,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UIFade.FadeCanvas(deathScreen, 1f, 0f, 1f, DEATH_ANIM_DUR));
         Invoke(nameof(EnableCharacterMovement), DEATH_ANIM_DUR);
 
+    }
+
+    private void OnRestrainOrderCheck()
+    {
+        VoidController controller = player.GetComponent<VoidController>();
+        controller.Repress();
+        controller.Reveal(lockedWall, new Vector3(0f, 0f, 3f));//Use Vector3.zero if no offset
+        lockedWall.SetActive(false);
     }
 
     private void EnableCharacterMovement()
