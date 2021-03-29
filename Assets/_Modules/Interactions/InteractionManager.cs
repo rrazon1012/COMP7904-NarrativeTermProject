@@ -16,6 +16,8 @@ public class InteractionManager : MonoBehaviour
 
     protected FieldOfView fov;
 
+    public intr_Book rayHit = null;
+
     // Start is called before the first frame update
     void Start() {
         fov = this.GetComponent<FieldOfView>();
@@ -23,7 +25,43 @@ public class InteractionManager : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate() {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 10.0f);
+
+        intr_Book raycastInteractable;
+        RaycastHit HitInfo = new RaycastHit();
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out HitInfo, 15.0f))
+        {
+            //check if collider hit has book interaction script
+            raycastInteractable = HitInfo.collider.gameObject.GetComponent<intr_Book>();
+
+            //if there is
+            if (raycastInteractable != null)
+            {
+                //check if there is a rayhit
+                if (rayHit != null)
+                {
+                    //there is a rayhit, check if the same one is being hit, if it isn't disable the old one and enable the new one then assign the reference to the new one
+                    if (!string.Equals(rayHit.gameObject.name, raycastInteractable.gameObject.name))
+                    {
+                        raycastInteractable.enableCanvas();
+                        rayHit.disableCanvas();
+                        rayHit = raycastInteractable;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Looking at same object");
+                    raycastInteractable.enableCanvas();
+                    rayHit = raycastInteractable;
+                }
+            }
+        }
+        else {
+            if (rayHit != null) {
+                rayHit.disableCanvas();
+                rayHit = null;
+            }
+        }
     }
 
     void OnInteract() {
