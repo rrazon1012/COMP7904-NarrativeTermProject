@@ -114,6 +114,32 @@ public class VoidController : MonoBehaviour
         StartCoroutine(voidAdjustmentCoroutine);
     }
 
+    public void Reveal(GameObject other, Vector3 offset)
+    {
+        VoidSphere.Instance.transform.position = other.transform.position + offset;
+        targetSphere.transform.position = new Vector3(0, -100, 0);
+
+        if (voidActive)
+        {
+            Debug.Log("Only one void may be active at a time.");
+            return;
+        }
+
+        voidActive = true;
+        AudioDirector.Instance.PlayRandomAudioAtPoint(sfx_OpenVoid, VoidSphere.Instance.transform.position);
+
+        // If the void is currently changing in size, end that process.
+        if (voidAdjustmentCoroutine != null)
+        {
+            StopCoroutine(voidAdjustmentCoroutine);
+        }
+
+        // Assign the new coroutine to the shared slot.
+        voidAdjustmentCoroutine = AdjustVoidSize(voidSize, voidSpeed);
+
+        StartCoroutine(voidAdjustmentCoroutine);
+    }
+
     public void FocusRepress() {
         Debug.Log("Focusing Void...");
 

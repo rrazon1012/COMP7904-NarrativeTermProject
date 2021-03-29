@@ -41,13 +41,13 @@ public class EventSystem : MonoBehaviour
     {
         onPlayerDeath?.Invoke();
     }
-    
+
     public event Action onLockOpen;
     public void LockOpen()
     {
         onLockOpen?.Invoke();
-    } 
-    
+    }
+
     public event Action onKeyEnterTrigger;
     public void KeyEnterTrigger()
     {
@@ -58,11 +58,18 @@ public class EventSystem : MonoBehaviour
     {
         onPlayerCaughtTrigger?.Invoke();
     }
-    
+
+    public event Action onRestrainOrderCheck;
+    public void RestrainOrderCheck()
+    {
+        onRestrainOrderCheck?.Invoke();
+    }
+
     public event Action onSpawnEnemy;
     public void SpawnEnemy()
     {
         onSpawnEnemy?.Invoke();
+
     }
     public event Action onPlayerInteractEnd;
     public void OnPlayerInteractEnd()
