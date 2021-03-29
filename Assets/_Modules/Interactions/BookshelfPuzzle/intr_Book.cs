@@ -79,8 +79,10 @@ public class intr_Book : InteractableObject
 
             if (targets > 0 && isRayHit)
             {
-                active = true;
-                promptCanvas.gameObject.SetActive(true);
+                if (!isReward && !puzzle_shelf.IsSolved || isReward && puzzle_shelf.IsSolved) {
+                    active = true;
+                    promptCanvas.gameObject.SetActive(true);
+                }
             }
             else
             {
@@ -104,7 +106,6 @@ public class intr_Book : InteractableObject
         }
         transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward * 15.0f, Time.deltaTime * 2.0f);
         isPulled = true;
-        this.enabled = false;
     }
     public void pushBook() {
         transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward * -15.0f, Time.deltaTime * 2.0f);
