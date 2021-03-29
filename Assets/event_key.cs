@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class event_key : MonoBehaviour
 {
+    [SerializeField] protected intr_Door door;
+    [SerializeField] protected GameObject key;
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Entering Item Trigger");
 
-        if (other.tag == "ItemTrigger") {
+        if (other.name.Equals(key.name)) {
 
-            Debug.Log("Firing event");
-
+            door.LockOpen();
+            door.OpenDoor();
             EventSystem.current.KeyEnterTrigger();
+            other.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            //Debug.Log("Firing event");
         }
     }
 }
