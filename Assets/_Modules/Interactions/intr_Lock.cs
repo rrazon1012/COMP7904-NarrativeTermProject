@@ -8,6 +8,7 @@ public class intr_Lock : InteractableObject
     [SerializeField] protected string password = "1234";
     [SerializeField] protected bool interact_Lock = false;
     [SerializeField] protected bool is_Locked = true;
+    public bool IsLocked { get { return is_Locked; } }
     [SerializeField] protected GameObject lock_Canvas;
 
     [SerializeField] protected Text text_comb1;
@@ -33,14 +34,18 @@ public class intr_Lock : InteractableObject
     private void Start()
     {
         inc_comb1.onClick.AddListener(delegate { increment_First(); });
-        inc_comb2.onClick.AddListener(delegate { increment_Second(); });
-        inc_comb3.onClick.AddListener(delegate { increment_Third(); });
-        inc_comb4.onClick.AddListener(delegate { increment_Fourth(); });
-
         dec_comb1.onClick.AddListener(delegate { decrement_First(); });
+
+        inc_comb2.onClick.AddListener(delegate { increment_Second(); });
         dec_comb2.onClick.AddListener(delegate { decrement_Second(); });
+
+        inc_comb3.onClick.AddListener(delegate { increment_Third(); });
         dec_comb3.onClick.AddListener(delegate { decrement_Third(); });
-        dec_comb4.onClick.AddListener(delegate { decrement_Fourth(); });
+
+        if (inc_comb4 != null) {
+            inc_comb4.onClick.AddListener(delegate { increment_Fourth(); });
+            dec_comb4.onClick.AddListener(delegate { decrement_Fourth(); });
+        }
     }
 
     void FixedUpdate()
@@ -49,7 +54,11 @@ public class intr_Lock : InteractableObject
         text_comb1.text = comb1.ToString();
         text_comb2.text = comb2.ToString();
         text_comb3.text = comb3.ToString();
-        text_comb4.text = comb4.ToString();
+
+        if (text_comb4 != null) {
+            text_comb4.text = comb4.ToString();
+        }
+        
         if (is_Locked == false) {
             GameObject.Destroy(this.gameObject);
         }
