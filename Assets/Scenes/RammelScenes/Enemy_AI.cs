@@ -25,6 +25,7 @@ public class Enemy_AI : MonoBehaviour
     //FOV for line of sight detection of the player
     [SerializeField] protected FieldOfView fov;
     [SerializeField] public float losTimer;
+    [SerializeField] public float breadCrumbTimer = 3.0f;
 
     [SerializeField] List<Vector3> breadCrumbs;
 
@@ -37,13 +38,12 @@ public class Enemy_AI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         voidToggledEnemy = GetComponent<VoidToggledEnemy>();
         chaseRoutine = false;
         destPoint = 0;
-        //the enemy begins unrevealed
-        //isActive = false;
-        //the enemy begins in the patrolling state
-        //isChasing = false;
+        fov = GetComponent<FieldOfView>();
+        agent = GetComponent<NavMeshAgent>();
         losTimer = 0.0f;
         breadCrumbs = new List<Vector3>();
     }
@@ -97,32 +97,30 @@ public class Enemy_AI : MonoBehaviour
                 breadCrumbs.Clear();
                 losTimer = 0.0f;
             }
-
             //while player has broken line of sight, put breadcrumbs, and after a few seconds go to the closest one
-            if (fov.VisibleTargets.Count == 0) {
+            else  {
                 //dont put a breadcrumb right when LOS is broken
                 //start timer, every second add a breadcrumb while LOS is broken
                 yield return new WaitForSecondsRealtime(1.0f);
                 
                 Debug.Log("Broke Line of Sight");
-                losTimer++;
+                ++losTimer;
 
                 //if its within the timer, add breadcrumbs
-                if (losTimer > 0 && losTimer <= 3) {
-                    //Vector3 crumb = player.transform.position;
-                    //breadCrumbs.Add(crumb);
+                if (losTimer < breadCrumbTimer) {
+                    agent.SetDestination(player.transform.position);
                     breadCrumbs.Add(player.transform.position);
                 }
 
                 //timer has ended, go to next breadcrumb
-                if (losTimer >= 3) {
+                if (losTimer >= breadCrumbTimer) {
                     agent.destination = breadCrumbs[0];
 
                     if (agent.remainingDistance < 0.5f) {
                         losTimer = 0.0f;
                         isChasing = false;
                         agent.isStopped = true;
-                        agent.ResetPath();
+                        agent.destination = patrollPoints[destPoint].position;
                         breadCrumbs.Clear();
                         chaseRoutine = false;
                         //went to last bread crumb, but didn't see player so go back to patrolling
@@ -156,6 +154,14 @@ public class Enemy_AI : MonoBehaviour
 
         agent.destination = patrollPoints[destPoint].position;
         destPoint = (destPoint + 1) % patrollPoints.Count;
+    }
+
+    public void Reset()
+    {
+        destPoint = 0;
+        isActive = false;
+        isChasing = false;
+        breadCrumbs.Clear();
     }
 
 }
