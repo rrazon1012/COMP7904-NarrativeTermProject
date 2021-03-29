@@ -16,7 +16,7 @@ public class intr_Door : InteractableObject
     }
     private void Start()
     {
-        EventSystem.current.onLockOpen += LockOpen;
+        //EventSystem.current.onLockOpen += LockOpen;
     }
 
     public override bool ValidInteractionState { get { return active && !locked; } }
