@@ -32,13 +32,13 @@ public class intr_Door : InteractableObject
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.red);
 
                     UpdateInteractionName("Close Door");
-                    doorObject.transform.rotation = Quaternion.Euler(openRotation);
+                    doorObject.transform.rotation *= Quaternion.Euler(openRotation);
 
                 } else {
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
 
                     UpdateInteractionName("Open Door");
-                    doorObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+                    doorObject.transform.rotation *= Quaternion.Euler(-openRotation);
                 }
 
                 open = !open;
