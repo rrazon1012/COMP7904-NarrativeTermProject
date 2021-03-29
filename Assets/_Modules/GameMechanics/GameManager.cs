@@ -133,8 +133,8 @@ public class GameManager : MonoBehaviour
         player.GetComponent<InteractionManager>().currentInteraction = null;
         player.GetComponent<InteractionManager>().interacting = false;
 
-        key.SetActive(false); //Gameobject.Destroy(key);
-        door.GetComponent<intr_Door>().LockOpen();
+        //key.SetActive(false); //Gameobject.Destroy(key);
+        //door.GetComponent<intr_Door>().LockOpen();
     }
     
     public void OnSpawnEnemy()
