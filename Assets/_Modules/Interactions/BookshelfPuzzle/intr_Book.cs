@@ -7,6 +7,8 @@ public class intr_Book : InteractableObject
     //put the book manager here
     [SerializeField]
     protected puzzle_Shelf puzzle_shelf;
+    [SerializeField]
+    bool isRayHit = false;
     //put boolean for if its already pulled out
     [SerializeField]
     public bool isPulled = false;
@@ -15,9 +17,7 @@ public class intr_Book : InteractableObject
 
     private void Start()
     {
-        if (isReward) {
-            promptCanvas.enabled = false;
-        }
+        promptCanvas.enabled = false;
     }
 
     void FixedUpdate()
@@ -77,7 +77,7 @@ public class intr_Book : InteractableObject
                 }
             }
 
-            if (targets > 0)
+            if (targets > 0 && isRayHit)
             {
                 active = true;
                 promptCanvas.gameObject.SetActive(true);
@@ -109,5 +109,17 @@ public class intr_Book : InteractableObject
     public void pushBook() {
         transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward * -15.0f, Time.deltaTime * 2.0f);
         isPulled = false;
+    }
+
+    public void enableCanvas() {
+        if (!isReward || isReward && puzzle_shelf.IsSolved)
+        {
+            isRayHit = true;
+            promptCanvas.enabled = true;
+        }
+    }
+    public void disableCanvas() {
+        isRayHit = false;
+        promptCanvas.enabled = false;
     }
 }
