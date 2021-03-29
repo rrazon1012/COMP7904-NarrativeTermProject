@@ -47,7 +47,7 @@ public abstract class InteractableObject : MonoBehaviour {
     }
 
     // If an actor enters the interaction range, add this interactable to their interaction list.
-    public void UpdateInteraction() {
+    public virtual void UpdateInteraction() {
         List<Transform> nearbyTargets = fov.FindNearbyTargets(INTERACTION_RANGE, fov.TargetMask);
         // fov.FindVisibleTargets();
 
