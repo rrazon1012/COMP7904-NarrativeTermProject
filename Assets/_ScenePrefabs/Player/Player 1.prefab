@@ -236,6 +236,7 @@ MonoBehaviour:
     m_Bits: 4096
   nearbyInteractables: []
   interactionCooldown: 0.6
+  rayHit: {fileID: 0}
 --- !u!114 &422123001325162952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +298,12 @@ MonoBehaviour:
   speedModifier: 0
   turnSpeedModifier: 0
   active: 1
+  isSprinting: 0
+  noStamina: 0
+  stamina: 2.5
+  maxStamina: 2.5
+  restTimer: 0
+  maxTimer: 2
   lowerModBound: 0.2
   upperModBound: 1.5
   mainCamera: {fileID: 0}
