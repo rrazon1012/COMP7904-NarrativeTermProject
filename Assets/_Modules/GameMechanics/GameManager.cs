@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject door;
     public GameObject key;
     public GameObject lockedWall;
+    public GameObject atticStairs;
 
     private bool isPaused = false;
     private bool endEntered = false;

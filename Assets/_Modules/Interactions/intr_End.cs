@@ -15,6 +15,7 @@ public class intr_End : InteractableObject
         if (active)
         {
             base.OnInteraction(interactor);
+            EventSystem.current.OnPlayerInteractEnd();
         }
 
     }
