@@ -36,16 +36,20 @@ public class puzzle_Shelf : MonoBehaviour
         {
             if (pullOrder.Count == numBooks)
             {
+                // Check equality for each book.
                 for (int i = 0; i < numBooks; i++)
                 {
+
                     if (!string.Equals(solOrder[i].gameObject.name, pullOrder[i].gameObject.name))
                     {
                         Debug.Log("false");
                         matches = false;
                     }
                 }
+
                 if (matches)
                 {
+                    // Puzzle was solved.
                     resetBooks();
                     target_Book.pullBook();
                     pullOrder.Clear();
@@ -53,6 +57,7 @@ public class puzzle_Shelf : MonoBehaviour
                 }
                 else
                 {
+                    // Puzzle must reset
                     resetBooks();
                     pullOrder.Clear();
                 }
