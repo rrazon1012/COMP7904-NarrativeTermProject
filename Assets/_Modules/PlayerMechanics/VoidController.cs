@@ -92,6 +92,7 @@ public class VoidController : MonoBehaviour
     }
 
     public void Reveal() {
+        isClosing = false;
         VoidSphere.Instance.transform.position = targetSphere.transform.position;
         targetSphere.transform.position = new Vector3(0, -100, 0);
 
@@ -116,6 +117,7 @@ public class VoidController : MonoBehaviour
 
     public void Reveal(GameObject other, Vector3 offset)
     {
+        isClosing = false;
         VoidSphere.Instance.transform.position = other.transform.position + offset;
         targetSphere.transform.position = new Vector3(0, -100, 0);
 
