@@ -363,6 +363,7 @@ Transform:
   m_Children:
   - {fileID: 2469918475947741644}
   - {fileID: 2469918477033511259}
+  - {fileID: 8900278036586775486}
   - {fileID: 2469918477436603390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -381,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockMechanism: {fileID: 2469918475947741641}
   hiddenObjects: {fileID: 2469918477033511259}
+  objectsToDeactivate: {fileID: 8900278036586775486}
   door: {fileID: 3352789275377058773}
   doorOpenLocation: {x: -0.496, y: -0.058823504, z: 1.549}
   doorOpenRotation: {x: 0, y: 225.24776, z: 0}
@@ -412,6 +414,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2723640634333353973}
+  m_Father: {fileID: 2469918477247128613}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2567401771167391828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8900278036586775486}
+  m_Layer: 0
+  m_Name: ToDeactivate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8900278036586775486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2567401771167391828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
   m_Father: {fileID: 2469918477247128613}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3003,6 +3035,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2723640633461827798}
     m_Modifications:
+    - target: {fileID: 5109193626802293875, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 5109193626802293875, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109193626802293875, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 5109193628064748804, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
       propertyPath: m_Name
       value: InteractionCanvas
@@ -3091,6 +3135,18 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6577878379472344803, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6577878379472344803, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577878379472344803, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
 --- !u!224 &7251192651637891952 stripped
@@ -3105,6 +3161,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2469918475947741644}
     m_Modifications:
+    - target: {fileID: 5109193626802293875, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 5109193626802293875, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109193626802293875, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 5109193628064748804, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
       propertyPath: m_Name
       value: InteractionCanvas
@@ -3192,6 +3260,18 @@ PrefabInstance:
     - target: {fileID: 5109193628064748811, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577878379472344803, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6577878379472344803, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577878379472344803, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fa445a5b91b2f14eadb873d0c1bb4ca, type: 3}

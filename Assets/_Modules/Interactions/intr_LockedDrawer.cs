@@ -7,6 +7,7 @@ public class intr_LockedDrawer : MonoBehaviour
     [Header("Prefab Components")]
     [SerializeField] intr_Lock lockMechanism;
     [SerializeField] Transform hiddenObjects;
+    [SerializeField] Transform objectsToDeactivate;
 
     [Header("Render Object Slots")]
     [SerializeField] GameObject door;
@@ -41,6 +42,12 @@ public class intr_LockedDrawer : MonoBehaviour
             // 2. Reveal All Items!
             foreach(Transform child in hiddenObjects) {
                 child.gameObject.SetActive(true);
+            }
+
+            if (objectsToDeactivate != null) {
+                foreach(Transform child in objectsToDeactivate) {
+                    child.gameObject.SetActive(false);
+                }
             }
 
         }
