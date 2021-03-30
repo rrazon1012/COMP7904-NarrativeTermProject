@@ -58,6 +58,7 @@ public class puzzle_Shelf : MonoBehaviour
                 else
                 {
                     // Puzzle must reset
+                    matches = true;
                     resetBooks();
                     pullOrder.Clear();
                 }
