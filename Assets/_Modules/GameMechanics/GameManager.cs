@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
+    public AmbienceMixer ambienceMixer;
     public GameObject player;
     public GameObject playerSpawn;
     public GameObject enemy;
@@ -48,7 +49,8 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onPlayerCaughtTrigger += OnPlayerCaughtTrigger;
         EventSystem.current.onRestrainOrderCheck += OnRestrainOrderCheck;
         EventSystem.current.onSpawnEnemy += OnSpawnEnemy;
-        EventSystem.current.onPlayerInteractEnd += OnPlayerInteractEnd;
+        EventSystem.current.onEnemyPatrol += OnEnemyPatrol;
+        EventSystem.current.onEnemyChase += OnEnemyChase;
     }
 
     private void OnPlayerRangeEnter()
@@ -160,4 +162,15 @@ public class GameManager : MonoBehaviour
     {
         enemy.SetActive(true);
     }
+
+    public void OnEnemyPatrol()
+    {
+        ambienceMixer.ChangeMusic(0, 0.05f, 0.8f);
+    }
+
+    public void OnEnemyChase()
+    {
+        ambienceMixer.ChangeMusic(1, 0.05f, 0.8f);
+    }
+
 }
