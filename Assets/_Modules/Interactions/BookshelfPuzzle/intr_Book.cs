@@ -100,6 +100,11 @@ public class intr_Book : InteractableObject
     }
 
     public void pullBook() {
+        if (interactionAudio != null && interactionAudio.Length > 0 && !isPulled)
+        {
+            Debug.Log("Pulling");
+            AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio[1], this.transform.position);
+        }
         if (!puzzle_shelf.IsSolved)
         {
             puzzle_shelf.pullOrder.Add(this);
@@ -108,6 +113,10 @@ public class intr_Book : InteractableObject
         isPulled = true;
     }
     public void pushBook() {
+        if (interactionAudio != null && interactionAudio.Length > 0)
+        {
+            AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio[2], this.transform.position);
+        }
         transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward * -15.0f, Time.deltaTime * 2.0f);
         isPulled = false;
     }
