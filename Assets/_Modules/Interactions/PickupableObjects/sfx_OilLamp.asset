@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ba5ef85ceaff143aca947bded8d05e, type: 3}
+  m_Name: sfx_OilLamp
+  m_EditorClassIdentifier: 
+  clipVolume: 1
+  pitchVariance: 0.2
+  clips:
+  - {fileID: 8300000, guid: 62dbd7e0009de3840b7c839f42fea3ff, type: 3}
+  - {fileID: 8300000, guid: 740e19b038abf0949a06636a799e6ea6, type: 3}
