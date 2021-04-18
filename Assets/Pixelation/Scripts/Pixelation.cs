@@ -11,7 +11,7 @@ namespace Assets.Pixelation.Scripts
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            float k = Camera.main.aspect;
+            float k = gameObject.GetComponent<Camera>().aspect;
             Vector2 count = new Vector2(BlockCount, BlockCount/k);
             Vector2 size = new Vector2(1.0f/count.x, 1.0f/count.y);
             //
