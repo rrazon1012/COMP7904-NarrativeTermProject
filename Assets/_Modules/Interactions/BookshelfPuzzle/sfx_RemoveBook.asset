@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ba5ef85ceaff143aca947bded8d05e, type: 3}
+  m_Name: sfx_RemoveBook
+  m_EditorClassIdentifier: 
+  clipVolume: 1
+  pitchVariance: 0.3
+  clips:
+  - {fileID: 8300000, guid: 635aebc68b1ffa34fb3d4bfe246a2227, type: 3}
+  - {fileID: 8300000, guid: 8269b73fcb238114db1575b0ba6629b3, type: 3}
+  - {fileID: 8300000, guid: a17fe72f5c678cb42859b3499febf574, type: 3}

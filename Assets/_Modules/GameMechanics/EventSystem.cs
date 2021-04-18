@@ -71,9 +71,22 @@ public class EventSystem : MonoBehaviour
         onSpawnEnemy?.Invoke();
 
     }
+
     public event Action onPlayerInteractEnd;
     public void OnPlayerInteractEnd()
     {
         onPlayerInteractEnd?.Invoke();
+    }
+
+    public event Action onEnemyPatrol;
+    public void OnEnemyPatrol()
+    {
+        onEnemyPatrol?.Invoke();
+    }
+
+    public event Action onEnemyChase;
+    public void OnEnemyChase()
+    {
+        onEnemyChase?.Invoke();
     }
 }
