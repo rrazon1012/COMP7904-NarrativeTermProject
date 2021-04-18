@@ -36,9 +36,17 @@ public class intr_Door : InteractableObject
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
                     CloseDoor();
                 }
+            } 
+        }
+        else
+        {
+            Debug.Log("Locked!");
+
+            if (interactionAudio != null && interactionAudio.Length > 0)
+            {
+                AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio[1], this.transform.position);
             }
         }
-        
     }
 
     public void LockOpen()
