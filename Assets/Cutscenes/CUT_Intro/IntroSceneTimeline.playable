@@ -84,7 +84,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 4390788886163757788}
-    m_Duration: 5
+    m_Duration: 20
     m_TimeScale: 1
     m_ParentTrack: {fileID: 5624159983321931852}
     m_EaseInDuration: 0
@@ -148,6 +148,6 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: CM_VCam Shot 1 A
+    m_DisplayName: CM_VCam Shot 1
   m_Markers:
     m_Objects: []
