@@ -2087,11 +2087,12 @@ MonoBehaviour:
   interactionName: Open Door
   interactionAudio:
   - {fileID: 11400000, guid: 8029c271a43dd9d4f95fc87be8885940, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 123b803527fcec94c83ffe31da78024a, type: 2}
   interactionFailedAudio: []
   active: 0
   doorObject: {fileID: 7621270616271230900}
   openRotation: {x: 0, y: 79, z: 0}
+  locked: 0
 --- !u!64 &7621270617188423614
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2100,10 +2101,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7621270617188423613}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!114 &7621270617188423603
