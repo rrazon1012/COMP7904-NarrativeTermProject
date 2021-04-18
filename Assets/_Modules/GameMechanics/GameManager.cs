@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnPlayerCaughtTrigger()
     {
-        ambienceMixer.PlayClip(3, 1f);
+        ambienceMixer.PlayOneClip(3, 1f);
         player.transform.position = playerSpawn.transform.position;
         player.transform.rotation = Quaternion.identity;
         player.transform.GetComponent<NavMeshAgent>().Warp(playerSpawn.transform.position);
@@ -166,14 +166,14 @@ public class GameManager : MonoBehaviour
 
     public void OnEnemyPatrol()
     {
-        ambienceMixer.ChangeMusic(1, 0.02f, 0.2f);
         ambienceMixer.Loop();
+        ambienceMixer.ChangeMusic(1, 0.02f, 0.2f);
     }
 
     public void OnEnemyChase()
     {
-        ambienceMixer.ChangeMusic(2, 0.02f, 0.2f);
         ambienceMixer.Loop();
+        ambienceMixer.ChangeMusic(2, 0.02f, 0.2f);
     }
 
 }
