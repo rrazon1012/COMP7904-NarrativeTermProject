@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
+    public AmbienceMixer ambienceMixer;
     public GameObject player;
     public GameObject playerSpawn;
     public GameObject enemy;
@@ -48,7 +49,8 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onPlayerCaughtTrigger += OnPlayerCaughtTrigger;
         EventSystem.current.onRestrainOrderCheck += OnRestrainOrderCheck;
         EventSystem.current.onSpawnEnemy += OnSpawnEnemy;
-        EventSystem.current.onPlayerInteractEnd += OnPlayerInteractEnd;
+        EventSystem.current.onEnemyPatrol += OnEnemyPatrol;
+        EventSystem.current.onEnemyChase += OnEnemyChase;
     }
 
     private void OnPlayerRangeEnter()
@@ -82,6 +84,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnPlayerCaughtTrigger()
     {
+        ambienceMixer.PlayClip(3, 1f);
         player.transform.position = playerSpawn.transform.position;
         player.transform.rotation = Quaternion.identity;
         player.transform.GetComponent<NavMeshAgent>().Warp(playerSpawn.transform.position);
@@ -160,4 +163,17 @@ public class GameManager : MonoBehaviour
     {
         enemy.SetActive(true);
     }
+
+    public void OnEnemyPatrol()
+    {
+        ambienceMixer.ChangeMusic(1, 0.02f, 0.2f);
+        ambienceMixer.Loop();
+    }
+
+    public void OnEnemyChase()
+    {
+        ambienceMixer.ChangeMusic(2, 0.02f, 0.2f);
+        ambienceMixer.Loop();
+    }
+
 }

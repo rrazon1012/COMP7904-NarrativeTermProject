@@ -35,6 +35,10 @@ public class Enemy_AI : MonoBehaviour
     private bool chaseRoutine;
     //private Renderer object;
 
+    [Header("AI audios")]
+    public AudioSource audioSource;
+    public AudioClip[] audioClipArray;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +50,8 @@ public class Enemy_AI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         losTimer = 0.0f;
         breadCrumbs = new List<Vector3>();
+        audioSource = GetComponent<AudioSource>();
+        PlayPatrolAudio();
     }
 
     // Update is called once per frame
@@ -88,6 +94,8 @@ public class Enemy_AI : MonoBehaviour
     }
 
     IEnumerator chasePlayer() {
+        //Play static noise
+        PlayChaseAudio();
         //while the player is being chased
         while (isChasing) {
             fov.FindVisibleTargets();
@@ -123,6 +131,7 @@ public class Enemy_AI : MonoBehaviour
                         agent.destination = patrollPoints[destPoint].position;
                         breadCrumbs.Clear();
                         chaseRoutine = false;
+                        PlayPatrolAudio();
                         //went to last bread crumb, but didn't see player so go back to patrolling
                         yield break;
                     }
@@ -137,6 +146,7 @@ public class Enemy_AI : MonoBehaviour
                 agent.ResetPath();
                 breadCrumbs.Clear();
                 chaseRoutine = false;
+                PlayPatrolAudio();
                 yield break;
             }
 
@@ -162,6 +172,24 @@ public class Enemy_AI : MonoBehaviour
         isActive = false;
         isChasing = false;
         breadCrumbs.Clear();
+        PlayPatrolAudio();
     }
 
+    private void PlayPatrolAudio()
+    {
+        audioSource.Stop();
+        audioSource.volume = 0.1f;
+        audioSource.PlayOneShot(audioClipArray[0]);
+        audioSource.loop = true;
+        EventSystem.current.OnEnemyPatrol();
+    }
+
+    private void PlayChaseAudio()
+    {
+        audioSource.Stop();
+        audioSource.volume = 0.2f;
+        audioSource.PlayOneShot(audioClipArray[1]);
+        audioSource.loop = true;
+        EventSystem.current.OnEnemyChase();
+    }
 }
