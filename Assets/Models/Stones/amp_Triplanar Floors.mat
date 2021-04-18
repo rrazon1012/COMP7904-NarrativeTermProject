@@ -54,5 +54,5 @@ Material:
     - _EdgeColor: {r: 0.1792453, g: 0.05833927, b: 0.05833927, a: 1}
     - _SideColor: {r: 0.12156863, g: 0.12156863, b: 0.12156863, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 0.58431375, g: 0.18039216, b: 0.29411766, a: 1}
+    - _TopColor: {r: 0.18039216, g: 0.58431375, b: 0.2876952, a: 1}
   m_BuildTextureStacks: []
