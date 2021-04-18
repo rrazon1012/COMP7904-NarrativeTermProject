@@ -12,8 +12,7 @@ public class AmbienceMixer : MonoBehaviour
     void Start()
     {
         source = this.GetComponent<AudioSource>();
-        PlayClip(0);
-        ChangeMusic(1,0.01f,0.5f);
+        PlayClip(0, 0.1f);
     }
 
     public void FadeIn(int track, float speed, float maxVolume)
@@ -31,15 +30,19 @@ public class AmbienceMixer : MonoBehaviour
         StartCoroutine(ChangeMusicRoutine(newTrack, speed, maxVolume));
     }
 
-    public void PlayClip(int newTrack)
+    public void PlayClip(int newTrack, float volume)
     {
-        source.Stop();
-        source.PlayOneShot(ambienceClips[newTrack]);
+        source.PlayOneShot(ambienceClips[newTrack], volume);
     }
 
     public void StopClip()
     {
         source.Stop();
+    }
+
+    public void Loop()
+    {
+        source.loop = true;
     }
 
     private IEnumerator FadeInRoutine(int track, float speed, float maxVolume)
@@ -87,7 +90,7 @@ public class AmbienceMixer : MonoBehaviour
         }
 
         source.Stop();
-
+        Debug.Log("Playing track: " + newTrack);
         if (ambienceClips != null)
         {
             FadeIn(newTrack, speed, maxVolume);

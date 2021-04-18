@@ -25,6 +25,7 @@ public class intr_RetrainOrder : InteractableObject
             if (!checkedRO)
             {
                 EventSystem.current.RestrainOrderCheck();
+                EventSystem.current.OnEnemyPatrol();
                 checkedRO = true;
             }
         }

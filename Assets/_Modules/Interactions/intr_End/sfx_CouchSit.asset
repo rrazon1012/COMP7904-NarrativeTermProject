@@ -15,4 +15,4 @@ MonoBehaviour:
   clipVolume: 1
   pitchVariance: 0
   clips:
-  - {fileID: 8300000, guid: f587f596fe8a1eb49bf9c0de0ef8d00a, type: 3}
+  - {fileID: 8300000, guid: 278ae89757b287943a67ed6b4542292b, type: 3}

@@ -180,6 +180,8 @@ public class Enemy_AI : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = 0.1f;
         audioSource.PlayOneShot(audioClipArray[0]);
+        audioSource.loop = true;
+        EventSystem.current.OnEnemyPatrol();
     }
 
     private void PlayChaseAudio()
@@ -187,5 +189,7 @@ public class Enemy_AI : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = 0.2f;
         audioSource.PlayOneShot(audioClipArray[1]);
+        audioSource.loop = true;
+        EventSystem.current.OnEnemyChase();
     }
 }

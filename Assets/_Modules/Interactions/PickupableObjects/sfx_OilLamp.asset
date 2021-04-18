@@ -15,5 +15,5 @@ MonoBehaviour:
   clipVolume: 1
   pitchVariance: 0.2
   clips:
-  - {fileID: 8300000, guid: 62dbd7e0009de3840b7c839f42fea3ff, type: 3}
-  - {fileID: 8300000, guid: 740e19b038abf0949a06636a799e6ea6, type: 3}
+  - {fileID: 8300000, guid: 3f41dcfbcc6b6e447a1a8044e829d25b, type: 3}
+  - {fileID: 8300000, guid: e462bf82312140240af59419bd4db27a, type: 3}
