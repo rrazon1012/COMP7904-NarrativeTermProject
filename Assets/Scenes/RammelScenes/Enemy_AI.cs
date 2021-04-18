@@ -35,6 +35,10 @@ public class Enemy_AI : MonoBehaviour
     private bool chaseRoutine;
     //private Renderer object;
 
+    [Header("AI audios")]
+    public AudioSource audioSource;
+    public AudioClip[] audioClipArray;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +50,8 @@ public class Enemy_AI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         losTimer = 0.0f;
         breadCrumbs = new List<Vector3>();
+        audioSource = GetComponent<AudioSource>();
+        PlayPatrolAudio();
     }
 
     // Update is called once per frame
@@ -79,6 +85,7 @@ public class Enemy_AI : MonoBehaviour
                     isChasing = true;
                 }
             }
+
             //player is nowhere to be seen, go looking for player, unless player has just been seen
             if (!agent.pathPending && agent.remainingDistance < 1.0f && !isChasing)
             {
@@ -88,6 +95,8 @@ public class Enemy_AI : MonoBehaviour
     }
 
     IEnumerator chasePlayer() {
+        //Play static noise
+        PlayChaseAudio();
         //while the player is being chased
         while (isChasing) {
             fov.FindVisibleTargets();
@@ -110,19 +119,23 @@ public class Enemy_AI : MonoBehaviour
                 if (losTimer < breadCrumbTimer) {
                     agent.SetDestination(player.transform.position);
                     breadCrumbs.Add(player.transform.position);
+                    
+                    //check if the first breadcrumb is too close to the ai and remove them
+                    if (Vector3.Distance(transform.position, breadCrumbs[0]) < 10.0f) {
+                        breadCrumbs.RemoveAt(0);
+                    }
                 }
 
                 //timer has ended, go to next breadcrumb
                 if (losTimer >= breadCrumbTimer) {
-                    agent.destination = breadCrumbs[0];
+                    
+                    agent.SetDestination(breadCrumbs[0]);
 
                     if (agent.remainingDistance < 0.5f) {
-                        losTimer = 0.0f;
-                        isChasing = false;
-                        agent.isStopped = true;
-                        agent.destination = patrollPoints[destPoint].position;
-                        breadCrumbs.Clear();
-                        chaseRoutine = false;
+ 
+                       
+                        Reset();
+                        PlayPatrolAudio();
                         //went to last bread crumb, but didn't see player so go back to patrolling
                         yield break;
                     }
@@ -131,12 +144,9 @@ public class Enemy_AI : MonoBehaviour
             
             //if the enemy at any point becomes inactive during the chase, go back to patrolling
             if (!isActive) {
-                losTimer = 0.0f;
-                isChasing = false;
-                agent.isStopped = true;
-                agent.ResetPath();
-                breadCrumbs.Clear();
-                chaseRoutine = false;
+               
+                Reset();
+                PlayPatrolAudio();
                 yield break;
             }
 
@@ -158,10 +168,34 @@ public class Enemy_AI : MonoBehaviour
 
     public void Reset()
     {
-        destPoint = 0;
-        isActive = false;
+        losTimer = 0.0f;
         isChasing = false;
+        agent.isStopped = true;
+        agent.ResetPath();
         breadCrumbs.Clear();
+        agent.SetDestination(patrollPoints[destPoint].position);
+        chaseRoutine = false;
+
+        PlayPatrolAudio();
     }
 
+    private void PlayPatrolAudio()
+    {
+        audioSource.Stop();
+        audioSource.volume = 0.1f;
+        audioSource.loop = true;
+        audioSource.clip = audioClipArray[0];
+        audioSource.Play();
+        EventSystem.current.OnEnemyPatrol();
+    }
+
+    private void PlayChaseAudio()
+    {
+        audioSource.Stop();
+        audioSource.volume = 0.2f;
+        audioSource.loop = true;
+        audioSource.clip = audioClipArray[1];
+        audioSource.Play();
+        EventSystem.current.OnEnemyChase();
+    }
 }
