@@ -8,6 +8,9 @@ public class AudioDirector : MonoBehaviour {
     [SerializeField] private static AudioDirector _instance;
     public static AudioDirector Instance { get { return _instance; } }
 
+    [SerializeField] protected AudioSource trackMixer;
+    [SerializeField] protected AudioSource ambienceMixer;
+
     [Header("Tunable Parameters")]
     [SerializeField] private AudioRolloffMode rolloffMode = AudioRolloffMode.Logarithmic;
     [SerializeField] private float maxDistance = 20f;
@@ -42,8 +45,11 @@ public class AudioDirector : MonoBehaviour {
         oneShotClips.transform.parent = this.transform;
     }
 
-    public void SetTrack(AudioClip newTrack) {
-        
+    public void SetTrack(AudioClip newTrack, bool loop = false) {
+        trackMixer.Stop();
+        trackMixer.clip = newTrack;
+        trackMixer.loop = loop;
+        trackMixer.Play();
     }
 
     // Point functions (Diagetic, position based)
