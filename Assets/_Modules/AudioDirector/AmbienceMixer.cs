@@ -12,7 +12,6 @@ public class AmbienceMixer : MonoBehaviour
     void Start()
     {
         source = this.GetComponent<AudioSource>();
-        StartGameAmbience();
     }
 
     public void FadeIn(int track, float speed, float maxVolume)
