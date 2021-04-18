@@ -179,8 +179,9 @@ public class Enemy_AI : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.volume = 0.1f;
-        audioSource.PlayOneShot(audioClipArray[0]);
         audioSource.loop = true;
+        audioSource.clip = audioClipArray[0];
+        audioSource.Play();
         EventSystem.current.OnEnemyPatrol();
     }
 
@@ -188,8 +189,9 @@ public class Enemy_AI : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.volume = 0.2f;
-        audioSource.PlayOneShot(audioClipArray[1]);
         audioSource.loop = true;
+        audioSource.clip = audioClipArray[1];
+        audioSource.Play();
         EventSystem.current.OnEnemyChase();
     }
 }
