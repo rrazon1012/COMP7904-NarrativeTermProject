@@ -79,11 +79,10 @@ public class Enemy_AI : MonoBehaviour
                     isChasing = true;
                 }
             }
-            Debug.Log(agent.pathPending + " " + agent.remainingDistance + " " + isChasing);
+
             //player is nowhere to be seen, go looking for player, unless player has just been seen
             if (!agent.pathPending && agent.remainingDistance < 1.0f && !isChasing)
             {
-                Debug.Log("Patrolling");
                 GotoNextPoint();
             }
         }
@@ -121,22 +120,13 @@ public class Enemy_AI : MonoBehaviour
 
                 //timer has ended, go to next breadcrumb
                 if (losTimer >= breadCrumbTimer) {
-                    //for (int i = 0; i < breadCrumbs.Count; i++) {
-                    //    if (Vector3.Distance(transform.position, breadCrumbs[i]) > 10.0f) {
-                    //        agent.SetDestination(breadCrumbs[i]);
-                    //    }
-                    //}
+                    
                     agent.SetDestination(breadCrumbs[0]);
 
                     if (agent.remainingDistance < 0.5f) {
-                        //losTimer = 0.0f;
-                        //isChasing = false;
-                        //agent.isStopped = true;
-                        //agent.ResetPath();
-                        //breadCrumbs.Clear();
-                        //agent.SetDestination(patrollPoints[destPoint].position);
-                        //chaseRoutine = false;
+                        
                         Reset();
+
                         //went to last bread crumb, but didn't see player so go back to patrolling
                         yield break;
                     }
@@ -145,14 +135,9 @@ public class Enemy_AI : MonoBehaviour
             
             //if the enemy at any point becomes inactive during the chase, go back to patrolling
             if (!isActive) {
-                //losTimer = 0.0f;
-                //isChasing = false;
-                //agent.isStopped = true;
-                //agent.ResetPath();
-                //breadCrumbs.Clear();
-                //agent.SetDestination(patrollPoints[destPoint].position);
-                //chaseRoutine = false;
+               
                 Reset();
+
                 yield break;
             }
 
