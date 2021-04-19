@@ -97901,6 +97901,10 @@ PrefabInstance:
       propertyPath: Obj
       value: 
       objectReference: {fileID: 1821253558}
+    - target: {fileID: 1022447161997476843, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1022447162601052798, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: Obj
       value: 
@@ -98043,23 +98047,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6259966270686769619, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6259966270686769619, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6259966270686769619, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.48
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 6259966270686769619, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.483099
+      value: 18.54125
       objectReference: {fileID: 0}
     - target: {fileID: 6259966270686769619, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -76.02
+      value: -334.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259966270686769619, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259966270686769619, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8539433421641509677, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: m_Mesh
@@ -98127,7 +98139,7 @@ PrefabInstance:
       objectReference: {fileID: 1683002695}
     - target: {fileID: 8964453540842947008, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
       propertyPath: field of view
-      value: 90
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66f1fa6caeb40b745bd2d6601cec683c, type: 3}
