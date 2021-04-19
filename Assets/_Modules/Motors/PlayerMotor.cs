@@ -239,20 +239,4 @@ public class PlayerMotor : BaseMotor {
 			}
 		}
     }
-
-	private void OnTriggerEnter(Collider col)
-	{
-		if (col.tag == "BoxTrigger")
-		{
-			EventSystem.current.PlayerRangeEnter();
-		}
-	}
-
-	private void OnTriggerExit(Collider col)
-	{
-		if (col.tag == "BoxTrigger")
-		{
-			EventSystem.current.PlayerRangeExit();
-		}
-	}
 }

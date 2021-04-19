@@ -53,7 +53,7 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 0.5722232, g: 0.7264151, b: 0.5802463, a: 1}
-    - _MainColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SSSColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+    - _SSSColor: {r: 0.16487186, g: 0.1792453, b: 0.16879188, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
