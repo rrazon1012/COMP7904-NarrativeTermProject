@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/KurtisScenes/ReleaseHouse.unity
+    path: Assets/Scenes/ReleaseHouse.unity
     guid: 9df2eac42fa76b647bd81a1749180116
   - enabled: 0
     path: Assets/Scenes/HoumanScenes/AlphaHouse.unity
