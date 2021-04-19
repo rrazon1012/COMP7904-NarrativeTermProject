@@ -300,6 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b41d36969e27c241a8a9a408c881dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trackMixer: {fileID: 2687107919721298179}
+  ambienceMixer: {fileID: 2687107921316482795}
   rolloffMode: 0
   maxDistance: 20
   SFX_UI_Positive: {fileID: 0}

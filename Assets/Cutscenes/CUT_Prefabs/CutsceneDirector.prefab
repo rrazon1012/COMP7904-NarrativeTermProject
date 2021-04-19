@@ -2617,8 +2617,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4687178932868683116}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.62, y: 18.54125, z: -334.92}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 9.48, y: 4.483099, z: -76.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3778030128585544305}
@@ -2649,7 +2649,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -11642,6 +11642,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -321048604495322856, guid: 8aa2329946bcb994f8966b617cf54612, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e0c6cda7cc6a6d74aa435f443ffe8546, type: 2}
     - target: {fileID: 919132149155446097, guid: 8aa2329946bcb994f8966b617cf54612, type: 3}
       propertyPath: m_Name
       value: Tree
