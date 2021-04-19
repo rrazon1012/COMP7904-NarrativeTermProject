@@ -24,9 +24,9 @@ public class intr_Door : InteractableObject
     public override void OnInteraction(InteractionManager interactor) {
 
         if (ValidInteractionState) {
-            base.OnInteraction(interactor);
+            
         
-            Debug.Log(interactor.name + " is interacting with " + this.name);
+            // Debug.Log(interactor.name + " is interacting with " + this.name);
             if (!locked) {
                 if (!open) {
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -36,7 +36,9 @@ public class intr_Door : InteractableObject
                     // GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
                     CloseDoor();
                 }
-            } 
+
+                base.OnInteraction(interactor);
+            }  
         }
         else
         {
@@ -47,6 +49,8 @@ public class intr_Door : InteractableObject
                 AudioDirector.Instance.PlayRandomAudioAtPoint(interactionAudio[1], this.transform.position);
             }
         }
+
+        
     }
 
     public void LockOpen()

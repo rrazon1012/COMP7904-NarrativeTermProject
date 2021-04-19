@@ -1,4 +1,4 @@
-﻿Shader "Toon/Lit Tri Planar Normal" {
+Shader "Toon/Lit Tri Planar Normal" {
     Properties{
         _TopColor("Top Color", Color) = (0.5,0.5,0.5,1)
         _MainTex("Top Texture", 2D) = "white" {}
@@ -123,7 +123,7 @@
         sidetextureNormal = lerp(sidetextureNormal, xnn, blendNormal.x);
         sidetextureNormal = lerp(sidetextureNormal, ynn, blendNormal.y);
  
- 
+        
         // dot product of world normal and surface normal + noise
         float worldNormalDotNoise = dot(o.Normal + (noisetexture.y + (noisetexture * 0.5)), worldNormalE.y);
  

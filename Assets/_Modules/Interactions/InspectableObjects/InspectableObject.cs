@@ -9,7 +9,7 @@ public class InspectableObject : InteractableObject
     public GameObject main_Cam;
     protected bool colorSwapped = false;
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         UpdateInteraction();
     }
@@ -19,7 +19,7 @@ public class InspectableObject : InteractableObject
 
         if (active)
         {
-            Debug.Log("Inspect");
+            // Debug.Log("Inspect");
             base.OnInteraction(interactor);
             interactor.currentInteraction = this;
         }

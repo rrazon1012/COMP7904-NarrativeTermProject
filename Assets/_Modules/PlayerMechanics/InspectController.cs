@@ -131,6 +131,12 @@ public class InspectController : MonoBehaviour
         //gets rid of the object in inspector container
         Destroy(insItem);
         itemRef.SetActive(true);
+
+        CutsceneController controller = itemRef.GetComponent<CutsceneController>();
+        if (controller != null) {
+            controller.StartCutscene();
+        }
+
         itemRef = null;
         insItem = null;
     }

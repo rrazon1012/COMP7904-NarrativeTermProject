@@ -86,6 +86,11 @@ public abstract class InteractableObject : MonoBehaviour {
         // Debug.Log(interactor.name + " is interacting with " + this.name);
         PlayInteractionAudio();
 
+        Debug.Log(this.name + " is type of " + this.GetType());
+        if (this.GetType() != typeof(intr_RetrainOrder)) {
+            LaunchCutscene();
+        }
+        
         // onCooldown = true;
         // StartCoroutine(Cooldown());
 
@@ -95,8 +100,15 @@ public abstract class InteractableObject : MonoBehaviour {
     }
 
     protected IEnumerator PromptColorPulse() {
-
         yield return null;
+    }
+
+    protected virtual void LaunchCutscene() {
+        CutsceneController csc = this.GetComponent<CutsceneController>();
+
+        if (csc != null) {
+            csc.StartCutscene();
+        }
     }
 
     protected virtual void PlayInteractionAudio() {
