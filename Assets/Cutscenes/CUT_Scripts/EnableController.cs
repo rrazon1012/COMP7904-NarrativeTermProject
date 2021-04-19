@@ -10,4 +10,13 @@ public class EnableController : MonoBehaviour
     {
         Obj.SetActive(active);
     }
+
+    public void move(GameObject refObj)
+    {
+        Vector3 pos = refObj.transform.position;
+        Quaternion rot = refObj.transform.rotation;
+        //Obj.transform.SetPositionAndRotation(pos, rot);
+        Obj.transform.position = pos;
+        Obj.transform.rotation = rot;
+    }
 }
