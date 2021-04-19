@@ -8,7 +8,11 @@ public class AudioDirector : MonoBehaviour {
     [SerializeField] private static AudioDirector _instance;
     public static AudioDirector Instance { get { return _instance; } }
 
+    [Header("Configuration")]
+    public const float TRACK_TRANSITION_TIME = 3f;
     [SerializeField] protected AudioSource trackMixer;
+    [SerializeField] protected float baseTrackVolume = 0.5f;
+    protected IEnumerator trackTransitionCoroutine;
     [SerializeField] protected AudioSource ambienceMixer;
 
     [Header("Tunable Parameters")]
@@ -45,11 +49,54 @@ public class AudioDirector : MonoBehaviour {
         oneShotClips.transform.parent = this.transform;
     }
 
-    public void SetTrack(AudioClip newTrack, bool loop = false) {
+    public void SetTrack(AudioClip newTrack, float volume, bool loop = false) {
+        if (newTrack != trackMixer.clip) {
+            
+            trackMixer.loop = loop;
+
+            if (trackTransitionCoroutine != null) {
+                StopCoroutine(trackTransitionCoroutine);
+            }
+
+            trackTransitionCoroutine = TrackTransition(newTrack, volume);
+            StartCoroutine(trackTransitionCoroutine);
+            
+        }
+        
+    }
+
+    protected IEnumerator TrackTransition(AudioClip newTrack, float newVolume) {
+        float startingVolume = baseTrackVolume;
+
+        // Fade out the current track.
+        while (trackMixer.volume > 0.0f) {
+            trackMixer.volume -= Mathf.Clamp(startingVolume * (Time.fixedDeltaTime / TRACK_TRANSITION_TIME), 0, Mathf.Infinity);
+            yield return new WaitForFixedUpdate();
+        }
+
+        // At this point, volume is zero. Swap tracks.
         trackMixer.Stop();
         trackMixer.clip = newTrack;
-        trackMixer.loop = loop;
-        trackMixer.Play();
+
+        if (newTrack != null) {
+            trackMixer.Play();
+
+            // Bring new track up to it's target volume
+            baseTrackVolume = newVolume;
+            while (trackMixer.volume < baseTrackVolume) {
+                trackMixer.volume += Mathf.Clamp (baseTrackVolume * (Time.fixedDeltaTime / TRACK_TRANSITION_TIME), 0, baseTrackVolume);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+    }
+
+    public void SetAmbience(AudioClip newAmbience, float volume) {
+        if (newAmbience != null && newAmbience != ambienceMixer.clip) {
+            ambienceMixer.Stop();
+        
+            ambienceMixer.clip = newAmbience;
+            ambienceMixer.Play();
+        }
     }
 
     // Point functions (Diagetic, position based)

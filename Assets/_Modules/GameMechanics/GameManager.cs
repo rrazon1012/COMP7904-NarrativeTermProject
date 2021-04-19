@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         EventSystem.current.onSpawnEnemy += OnSpawnEnemy;
         EventSystem.current.onEnemyPatrol += OnEnemyPatrol;
         EventSystem.current.onEnemyChase += OnEnemyChase;
+        EventSystem.current.onPlayerInteractEnd += OnPlayerInteractEnd;
     }
 
     private void OnPlayerRangeEnter()
