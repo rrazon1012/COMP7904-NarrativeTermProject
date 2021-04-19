@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ba5ef85ceaff143aca947bded8d05e, type: 3}
+  m_Name: sfx_DoorLocked
+  m_EditorClassIdentifier: 
+  clipVolume: 1
+  pitchVariance: 0.2
+  clips:
+  - {fileID: 8300000, guid: 4010f61cf20a89c4a91719374b8aa7b5, type: 3}

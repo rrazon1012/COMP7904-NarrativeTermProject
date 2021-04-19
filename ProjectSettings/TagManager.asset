@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BoxTrigger
+  - ItemTrigger
   layers:
   - Default
   - TransparentFX
@@ -13,13 +15,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - IgnoreNavmesh
+  - PostProcessing
+  - ViewModel
+  - Player
+  - Interactable
+  - Inspectable
+  - MirrorVisibleOnly
   - 
   - 
   - 
