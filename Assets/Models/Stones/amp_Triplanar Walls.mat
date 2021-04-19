@@ -34,6 +34,7 @@ Material:
     m_Floats:
     - _AlphaBlend: 0
     - _BlendLine: -0.22
+    - _DecayingAmplitude: 0.25
     - _DecayingMax: 0.477
     - _DecayingMin: 0.28
     - _EdgeWidth: 1
@@ -45,7 +46,7 @@ Material:
     - _SideTextureScale: 0.01
     - _Specular: 0
     - _TextureScale: 0.1
-    - _TopSpread: 1.57
+    - _TopSpread: 2.5
     - _TopTextureScale: 0.1
     - _WorldOffset: 1.4
     - _WorldPow: 4
