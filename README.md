@@ -1,8 +1,4 @@
-# COMP7904-NarrativeTermProject
+# The Happy Place
+COMP7904 Narrative Term Project
 
-Hey, this this the initial readme.
 
-Imported some packages into a blank Unity project.
-Make sure you can pull, edit and push changes.
-
-- Kurtis.
